@@ -19,12 +19,12 @@ public final class DatabaseConnector {
         }
     }
 
-    private static final String JDBC_USERNAME = properties.getProperty("db.username");
-    private static final String JDBC_PASSWORD = properties.getProperty("db.password");
-    private static final String JDBC_DATABASE_NAME = properties.getProperty("db.database.name");
-    private static final String JDBC_HOST = properties.getProperty("db.host");
-    private static final String JDBC_PORT = properties.getProperty("db.port");
-    private static final String JDBC_DRIVER = properties.getProperty("db.driver");
+    private static final String JDBC_USERNAME = properties.getProperty("jdbc.username");
+    private static final String JDBC_PASSWORD = properties.getProperty("jdbc.password");
+    private static final String JDBC_DATABASE_NAME = properties.getProperty("jdbc.database");
+    private static final String JDBC_HOST = properties.getProperty("jdbc.host");
+    private static final String JDBC_PORT = properties.getProperty("jdbc.port");
+    private static final String JDBC_DRIVER = properties.getProperty("jdbc.driver");
 
     private static final String JDBC_URL = "jdbc:" + JDBC_DRIVER + "://" + JDBC_HOST + ":" + JDBC_PORT + "/" + JDBC_DATABASE_NAME;
 
