@@ -1,8 +1,10 @@
-package org.example.service.dao;
+package org.example.service.db.dao;
 
 import org.example.model.Group;
+import org.example.model.Student;
 
 import java.util.List;
+import java.util.Optional;
 
 public class GroupDatabaseHelper implements DatabaseHelper<Group, String> {
 
@@ -22,5 +24,10 @@ public class GroupDatabaseHelper implements DatabaseHelper<Group, String> {
     @Override
     public boolean deleteById(String s) {
         return false;
+    }
+
+    @Override
+    public Optional<Student> findById(String s) {
+        return Optional.empty();
     }
 }

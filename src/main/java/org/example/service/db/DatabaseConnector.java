@@ -1,4 +1,4 @@
-package org.example;
+package org.example.service.db;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -36,6 +36,7 @@ public final class DatabaseConnector {
         try {
             return DriverManager.getConnection(JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD);
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new RuntimeException("Unable to create connection for " + JDBC_URL);
         }
     }

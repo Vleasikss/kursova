@@ -1,6 +1,7 @@
-package org.example.service.dao;
+package org.example.service.db.dao;
 
-import org.example.DatabaseConnector;
+import org.example.model.Student;
+import org.example.service.db.DatabaseConnector;
 import org.example.model.Faculty;
 
 import java.sql.Connection;
@@ -9,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class FacultyDatabaseHelper implements DatabaseHelper<Faculty, String> {
 
@@ -54,6 +56,11 @@ public class FacultyDatabaseHelper implements DatabaseHelper<Faculty, String> {
     public boolean deleteById(String s) {
 //        todo
         return false;
+    }
+
+    @Override
+    public Optional<Student> findById(String s) {
+        return Optional.empty();
     }
 
 }

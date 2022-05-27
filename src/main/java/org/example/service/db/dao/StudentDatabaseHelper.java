@@ -1,7 +1,7 @@
-package org.example.service.dao;
+package org.example.service.db.dao;
 
-import org.example.DatabaseConnector;
 import org.example.model.Student;
+import org.example.service.db.DatabaseConnector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class StudentDatabaseHelper implements DatabaseHelper<Student, Integer> {
 
@@ -18,6 +19,8 @@ public class StudentDatabaseHelper implements DatabaseHelper<Student, Integer> {
     private static final String INSERT_STUDENT_QUERY = "INSERT INTO kursova_project_java.STUDENT VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     //language=SQL
     private static final String DELETE_STUDENT_BY_ID_QUERY = "DELETE FROM kursova_project_java.STUDENT WHERE id = ?";
+    //language=SQL
+    private static final String FIND_STUDENT_BY_ID_QUERY = "SELECT * FROM kursova_project_java.STUDENT WHERE id = ?";
 
     @Override
     public List<Student> findAll() {
@@ -106,6 +109,53 @@ public class StudentDatabaseHelper implements DatabaseHelper<Student, Integer> {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public Optional<Student> findById(Integer identifier) {
+        try {
+            Connection connection = DatabaseConnector.getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(FIND_STUDENT_BY_ID_QUERY);
+            preparedStatement.setMaxRows(1);
+            preparedStatement.setInt(1, identifier);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (!resultSet.next()) {
+                return Optional.empty();
+            }
+
+            int id = resultSet.getInt("id");
+            String firstName = resultSet.getString("first_name");
+            String lastName = resultSet.getString("last_name");
+            String patronymic = resultSet.getString("patronymic");
+            String form = resultSet.getString("form");
+            double ratingScore = resultSet.getDouble("rating_score");
+            String facultyId = resultSet.getString("faculty_id");
+            String groupId = resultSet.getString("group_id");
+
+            Student student = new Student();
+            student.setId(id);
+            student.setFirstName(firstName);
+            student.setLastName(lastName);
+            student.setPatronymic(patronymic);
+            student.setForm(form);
+            student.setRatingScore(ratingScore);
+            student.setFacultyId(facultyId);
+            student.setGroupId(groupId);
+
+
+
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+
+            return Optional.of(student);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
+
     }
 
 }
