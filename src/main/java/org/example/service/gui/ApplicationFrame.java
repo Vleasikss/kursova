@@ -1,34 +1,20 @@
 package org.example.service.gui;
 
-import org.example.service.gui.extension.FrameExtension;
-
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ApplicationFrame extends JFrame implements WindowListener {
-
-    private final List<FrameExtension> extensionList;
-
 
     private static final int DEFAULT_FRAME_WIDTH = 1200;
     private static final int DEFAULT_FRAME_HEIGHT = 600;
 
-    public ApplicationFrame(String title) {
+    public ApplicationFrame(String title, JTabbedPane pane) {
         super(title);
-        this.extensionList = new ArrayList<>();
-    }
-
-    public void extend(FrameExtension extension) {
-        this.extensionList.add(extension);
+        add(pane);
     }
 
     public void perform() {
-        this.extensionList.forEach(extension -> add(extension.apply()));
         this.setSize(DEFAULT_FRAME_WIDTH, DEFAULT_FRAME_HEIGHT);
         this.setVisible(true);
     }

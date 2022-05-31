@@ -7,5 +7,4 @@ public interface FrameExtension {
 
     Component apply();
 
-
 }

@@ -1,6 +1,7 @@
 package org.example.model;
 
 public class Faculty {
+
     private String name;
 
     public String getName() {

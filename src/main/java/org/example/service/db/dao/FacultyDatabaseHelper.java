@@ -1,7 +1,6 @@
 package org.example.service.db.dao;
 
 import org.example.model.Student;
-import org.example.service.db.DatabaseConnector;
 import org.example.model.Faculty;
 
 import java.sql.Connection;

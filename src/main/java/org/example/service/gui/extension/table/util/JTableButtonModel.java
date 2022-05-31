@@ -1,9 +1,6 @@
-package org.example.service.gui.extension.table;
+package org.example.service.gui.extension.table.util;
 
-import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class JTableButtonModel extends AbstractTableModel {
 

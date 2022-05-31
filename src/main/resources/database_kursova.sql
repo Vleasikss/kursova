@@ -102,3 +102,5 @@ INSERT INTO `GROUP`
 VALUES ('MN-401', 'IC', 074, 4);
 INSERT INTO STUDENT
 VALUES (6, 'Vlad', 'Vladov', 'Vladovich', 'CONTRACT', 'IC',  'MN-401', 64.6);
+
+SELECT * FROM `GROUP` where faculty_name = 'IKCT';

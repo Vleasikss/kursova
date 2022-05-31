@@ -1,6 +1,6 @@
 package org.example.service.gui.tab;
 
-import org.example.service.gui.ApplicationTabbedPane;
+import org.example.service.gui.ApplicationTabbedPaneSingleton;
 
 import java.awt.*;
 
@@ -11,7 +11,10 @@ public interface FrameTab {
     Component apply();
 
     default void show() {
-        ApplicationTabbedPane pane = ApplicationTabbedPane.getInstance();
+        ApplicationTabbedPaneSingleton pane = ApplicationTabbedPaneSingleton.getInstance();
+        if (pane.indexOfTab(title()) == -1) {
+            pane.addTab(this);
+        }
         pane.setSelectedIndex(pane.indexOfTab(title()));
     }
 

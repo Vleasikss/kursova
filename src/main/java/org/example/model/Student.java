@@ -2,7 +2,7 @@ package org.example.model;
 
 public class Student {
 
-    private int id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String patronymic;
@@ -10,6 +10,20 @@ public class Student {
     private String groupId;
     private String facultyId;
     private Double ratingScore;
+
+    public Student() {
+    }
+
+    public Student(Long id, String firstName, String lastName, String patronymic, String form, String groupId, String facultyId, Double ratingScore) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.patronymic = patronymic;
+        this.form = form;
+        this.groupId = groupId;
+        this.facultyId = facultyId;
+        this.ratingScore = ratingScore;
+    }
 
     public String getFacultyId() {
         return facultyId;
@@ -27,11 +41,11 @@ public class Student {
         this.groupId = groupId;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

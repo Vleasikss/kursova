@@ -1,4 +1,4 @@
-package org.example.service.gui.extension.table;
+package org.example.service.gui.extension.table.util;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class JTableButtonRenderer implements TableCellRenderer {
 
-    private TableCellRenderer defaultRenderer;
+    private final TableCellRenderer defaultRenderer;
 
     public JTableButtonRenderer(TableCellRenderer renderer) {
         defaultRenderer = renderer;

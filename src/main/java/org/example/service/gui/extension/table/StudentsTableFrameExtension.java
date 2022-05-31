@@ -1,19 +1,24 @@
-package org.example.service.gui.extension;
+package org.example.service.gui.extension.table;
 
 import org.example.model.Student;
-import org.example.service.gui.extension.button.SelectUserByIdJButton;
-import org.example.service.gui.extension.table.JTableButtonModel;
-import org.example.service.gui.extension.table.JTableButtonRenderer;
-import org.example.service.gui.tab.StudentByIdTab;
+import org.example.service.gui.extension.FrameExtension;
+import org.example.service.gui.extension.button.ShowButton;
+import org.example.service.gui.extension.table.util.JTableButtonModel;
+import org.example.service.gui.extension.table.util.JTableButtonMouseListener;
+import org.example.service.gui.extension.table.util.JTableButtonRenderer;
+import org.example.service.gui.tab.id.StudentByIdTab;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.List;
 
 public class StudentsTableFrameExtension implements FrameExtension {
+
+    private static final int TABLE_X = 30;
+    private static final int TABLE_Y = 40;
+    private static final int TABLE_WIDTH = 200;
+    private static final int TABLE_HEIGHT = 300;
 
     private final List<Student> students;
 
@@ -31,8 +36,8 @@ public class StudentsTableFrameExtension implements FrameExtension {
 
             StudentByIdTab studentByIdTab = new StudentByIdTab(student);
 
-            data[i][0] = new SelectUserByIdJButton(studentByIdTab);
-            data[i][1] = student.getId();
+            data[i][0] = new ShowButton(studentByIdTab);
+            data[i][1] = i + 1;
             data[i][2] = student.getFirstName();
             data[i][3] = student.getLastName();
             data[i][4] = student.getPatronymic();
@@ -44,34 +49,12 @@ public class StudentsTableFrameExtension implements FrameExtension {
 
         JTable jt = new JTable(new JTableButtonModel(data, columns));
         jt.addMouseListener(new JTableButtonMouseListener(jt));
+
         TableCellRenderer tableRenderer = jt.getDefaultRenderer(JButton.class);
         jt.setDefaultRenderer(JButton.class, new JTableButtonRenderer(tableRenderer));
-        jt.setBounds(30, 40, 200, 300);
+        jt.setBounds(TABLE_X, TABLE_Y, TABLE_WIDTH, TABLE_HEIGHT);
 
         return new JScrollPane(jt);
     }
-
-    private static class JTableButtonMouseListener extends MouseAdapter {
-        private final JTable table;
-
-        public JTableButtonMouseListener(JTable table) {
-            this.table = table;
-        }
-
-        public void mouseClicked(MouseEvent e) {
-            int column = table.getColumnModel().getColumnIndexAtX(e.getX()); // get the coloum of the button
-            int row    = e.getY()/table.getRowHeight(); //get the row of the button
-
-            /*Checking the row or column is valid or not*/
-            if (row < table.getRowCount() && row >= 0 && column < table.getColumnCount() && column >= 0) {
-                Object value = table.getValueAt(row, column);
-                if (value instanceof JButton) {
-                    /*perform a click event*/
-                    ((JButton)value).doClick();
-                }
-            }
-        }
-    }
-
 
 }

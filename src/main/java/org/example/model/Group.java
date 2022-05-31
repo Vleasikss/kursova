@@ -1,5 +1,6 @@
 package org.example.model;
 
+
 public class Group {
 
     private String name;
@@ -48,4 +49,5 @@ public class Group {
                 ", course=" + course +
                 '}';
     }
+
 }
