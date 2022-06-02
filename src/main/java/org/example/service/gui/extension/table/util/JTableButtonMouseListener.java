@@ -5,6 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class JTableButtonMouseListener extends MouseAdapter {
+
     private final JTable table;
 
     public JTableButtonMouseListener(JTable table) {

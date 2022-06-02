@@ -6,8 +6,9 @@ import javax.swing.*;
 
 public class ShowButton extends JButton {
 
-    public ShowButton(FrameTab byIdTab) {
-        setText(byIdTab.title());
-        addActionListener(e -> byIdTab.show());
+    public ShowButton(FrameTab frameTab) {
+        setText(frameTab.title());
+        addActionListener(e -> frameTab.show());
     }
+
 }

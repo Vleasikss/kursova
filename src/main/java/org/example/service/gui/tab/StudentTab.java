@@ -1,16 +1,16 @@
-package org.example.service.gui.tab.id;
+package org.example.service.gui.tab;
 
 import org.example.model.Student;
-import org.example.service.gui.tab.FrameTab;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
-public class StudentByIdTab implements FrameTab {
+public class StudentTab implements FrameTab {
 
     private final Student student;
 
-    public StudentByIdTab(Student student) {
+    public StudentTab(Student student) {
         this.student = student;
     }
 
@@ -20,9 +20,8 @@ public class StudentByIdTab implements FrameTab {
     }
 
     @Override
-    public Component apply() {
-
-        return new JLabel(student.toString());
+    public List<Component> components() {
+        return List.of(new JLabel(student.toString()));
     }
 
 }

@@ -1,6 +1,7 @@
 package org.example.service.db.dao;
 
 import org.example.model.Student;
+import org.example.model.StudyForm;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,18 +11,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class StudentDatabaseHelper implements DatabaseHelper<Student, Integer> {
+public class StudentDatabaseHelper implements DatabaseHelper<Student, Long> {
 
     //language=SQL
-    private static final String FIND_ALL_STUDENTS_QUERY = "select * from kursova_project_java.STUDENT";
+    private static final String FIND_ALL_STUDENTS_QUERY = "select * from STUDENT";
     //language=SQL
-    private static final String INSERT_STUDENT_QUERY = "INSERT INTO kursova_project_java.STUDENT VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String INSERT_STUDENT_QUERY = "INSERT INTO STUDENT(first_name, last_name, patronymic, form, faculty_id, group_id, rating_score) VALUES (?, ?, ?, ?, ?, ?, ?)";
     //language=SQL
-    private static final String DELETE_STUDENT_BY_ID_QUERY = "DELETE FROM kursova_project_java.STUDENT WHERE id = ?";
+    private static final String DELETE_STUDENT_BY_ID_QUERY = "DELETE FROM STUDENT WHERE id = ?";
     //language=SQL
-    private static final String FIND_STUDENT_BY_ID_QUERY = "SELECT * FROM kursova_project_java.STUDENT WHERE id = ?";
+    private static final String FIND_STUDENT_BY_ID_QUERY = "SELECT * FROM STUDENT WHERE id = ?";
     //language=SQL
-    private static final String FIND_STUDENTS_BY_GROUP_NAME_QUERY = "SELECT * FROM kursova_project_java.STUDENT where group_id = ?";
+    private static final String FIND_STUDENTS_BY_GROUP_NAME_QUERY = "SELECT * FROM STUDENT where group_id = ?";
 
     @Override
     public List<Student> findAll() {
@@ -48,7 +49,7 @@ public class StudentDatabaseHelper implements DatabaseHelper<Student, Integer> {
                 student.setFirstName(firstName);
                 student.setLastName(lastName);
                 student.setPatronymic(patronymic);
-                student.setForm(form);
+                student.setForm(StudyForm.valueOf(form));
                 student.setRatingScore(ratingScore);
                 student.setFacultyId(facultyId);
                 student.setGroupId(groupId);
@@ -73,14 +74,13 @@ public class StudentDatabaseHelper implements DatabaseHelper<Student, Integer> {
             Connection connection = DatabaseConnector.getConnection();
 
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_STUDENT_QUERY);
-            preparedStatement.setLong(1, student.getId());
-            preparedStatement.setString(2, student.getFirstName());
-            preparedStatement.setString(3, student.getLastName());
-            preparedStatement.setString(4, student.getPatronymic());
-            preparedStatement.setString(5, student.getForm());
-            preparedStatement.setString(6, student.getFacultyId());
-            preparedStatement.setString(7, student.getGroupId());
-            preparedStatement.setDouble(8, student.getRatingScore());
+            preparedStatement.setString(1, student.getFirstName());
+            preparedStatement.setString(2, student.getLastName());
+            preparedStatement.setString(3, student.getPatronymic());
+            preparedStatement.setString(4, student.getForm().name().toUpperCase());
+            preparedStatement.setString(5, student.getFacultyId());
+            preparedStatement.setString(6, student.getGroupId());
+            preparedStatement.setDouble(7, student.getRatingScore());
 
             int countOfChanges = preparedStatement.executeUpdate();
 
@@ -94,12 +94,12 @@ public class StudentDatabaseHelper implements DatabaseHelper<Student, Integer> {
     }
 
     @Override
-    public boolean deleteById(Integer id) {
+    public boolean deleteById(Long id) {
         try {
             Connection connection = DatabaseConnector.getConnection();
 
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_STUDENT_BY_ID_QUERY);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
 
             int countOfChanges = preparedStatement.executeUpdate();
 
@@ -113,13 +113,13 @@ public class StudentDatabaseHelper implements DatabaseHelper<Student, Integer> {
     }
 
     @Override
-    public Optional<Student> findById(Integer identifier) {
+    public Optional<Student> findById(Long identifier) {
         try {
             Connection connection = DatabaseConnector.getConnection();
 
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_STUDENT_BY_ID_QUERY);
             preparedStatement.setMaxRows(1);
-            preparedStatement.setInt(1, identifier);
+            preparedStatement.setLong(1, identifier);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (!resultSet.next()) {
@@ -140,7 +140,7 @@ public class StudentDatabaseHelper implements DatabaseHelper<Student, Integer> {
             student.setFirstName(firstName);
             student.setLastName(lastName);
             student.setPatronymic(patronymic);
-            student.setForm(form);
+            student.setForm(StudyForm.valueOf(form));
             student.setRatingScore(ratingScore);
             student.setFacultyId(facultyId);
             student.setGroupId(groupId);
@@ -184,7 +184,7 @@ public class StudentDatabaseHelper implements DatabaseHelper<Student, Integer> {
                 student.setFirstName(firstName);
                 student.setLastName(lastName);
                 student.setPatronymic(patronymic);
-                student.setForm(form);
+                student.setForm(StudyForm.valueOf(form));
                 student.setRatingScore(ratingScore);
                 student.setFacultyId(facultyId);
                 student.setGroupId(groupId);

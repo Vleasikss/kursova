@@ -4,23 +4,34 @@ import org.example.service.db.dao.FacultyDatabaseHelper;
 import org.example.service.gui.extension.table.FacultiesTableFrameExtension;
 
 import java.awt.*;
+import java.util.List;
 
 public class AllFacultiesTab implements FrameTab {
 
+    private static final String ALL_FACULTIES_TAB_TITLE = "faculties";
+    private static AllFacultiesTab allFacultiesTab;
+
     private final FacultyDatabaseHelper facultyDatabaseHelper;
 
-    public AllFacultiesTab() {
+    private AllFacultiesTab() {
         this.facultyDatabaseHelper = new FacultyDatabaseHelper();
+    }
+
+    public static AllFacultiesTab getInstance() {
+        if (allFacultiesTab == null) {
+            allFacultiesTab = new AllFacultiesTab();
+        }
+        return allFacultiesTab;
     }
 
     @Override
     public String title() {
-        return "all faculties";
+        return ALL_FACULTIES_TAB_TITLE;
     }
 
     @Override
-    public Component apply() {
-        return new FacultiesTableFrameExtension(facultyDatabaseHelper.findAll()).apply();
+    public List<Component> components() {
+        return List.of(new FacultiesTableFrameExtension(facultyDatabaseHelper.findAll()).apply());
     }
 
 }

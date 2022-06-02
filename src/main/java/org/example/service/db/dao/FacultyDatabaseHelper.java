@@ -1,7 +1,7 @@
 package org.example.service.db.dao;
 
-import org.example.model.Student;
 import org.example.model.Faculty;
+import org.example.model.Student;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class FacultyDatabaseHelper implements DatabaseHelper<Faculty, String> {
 
     //language=SQL
-    private static final String FIND_ALL_FACULTIES_QUERY = "select * from kursova_project_java.FACULTY";
+    private static final String FIND_ALL_FACULTIES_QUERY = "SELECT * FROM FACULTY";
 
     @Override
     public List<Faculty> findAll() {
@@ -44,6 +44,8 @@ public class FacultyDatabaseHelper implements DatabaseHelper<Faculty, String> {
         }
         return null;
     }
+
+
 
     @Override
     public boolean insert(Faculty faculty) {

@@ -1,31 +1,32 @@
-package org.example.service.gui.tab.id;
+package org.example.service.gui.tab;
 
 import org.example.model.Faculty;
 import org.example.service.db.dao.GroupDatabaseHelper;
 import org.example.service.gui.extension.table.GroupsTableFrameExtension;
-import org.example.service.gui.tab.FrameTab;
 
-import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
-public class FacultyByIdTab implements FrameTab {
+public class AllGroupsByFacultyNameTab implements FrameTab {
 
     private final Faculty faculty;
     private final GroupDatabaseHelper groupDatabaseHelper;
 
-    public FacultyByIdTab(Faculty faculty) {
+    public AllGroupsByFacultyNameTab(Faculty faculty) {
         this.faculty = faculty;
         this.groupDatabaseHelper = new GroupDatabaseHelper();
     }
 
     @Override
     public String title() {
-        return faculty.getName();
+        return faculty.getName() + "-groups";
     }
 
     @Override
-    public Component apply() {
-        return new GroupsTableFrameExtension(groupDatabaseHelper.findByFacultyName(faculty.getName())).apply();
+    public List<Component> components() {
+        return List.of(
+                new GroupsTableFrameExtension(groupDatabaseHelper.findByFacultyName(faculty.getName())).apply()
+        );
     }
 
 }

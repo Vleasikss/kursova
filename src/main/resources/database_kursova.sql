@@ -5,14 +5,14 @@ USE kursova_project_java;
 
 CREATE TABLE STUDENT
 (
-    id         bigint primary key,
-    first_name varchar(64) not null,
-    last_name  varchar(64) not null,
-    patronymic varchar(64) not null,
-    form       varchar(32) not null,
-    faculty_id varchar(64) not null,
-    group_id   varchar(64) not null,
-    rating_score      double         not null
+    id           bigint primary key auto_increment,
+    first_name   varchar(64) not null,
+    last_name    varchar(64) not null,
+    patronymic   varchar(64) not null,
+    form         varchar(32) not null,
+    faculty_id   varchar(64) not null,
+    group_id     varchar(64) not null,
+    rating_score double      not null
 );
 
 CREATE TABLE FACULTY
@@ -27,10 +27,10 @@ CREATE TABLE SPECIALITY
 
 CREATE TABLE `GROUP`
 (
-    group_name   varchar(64) not null primary key,
-    faculty_name varchar(64) not null,
-    speciality_name int not null,
-    course       int         not null
+    group_name      varchar(64) not null primary key,
+    faculty_name    varchar(64) not null,
+    speciality_name int         not null,
+    course          int         not null
 );
 
 ALTER TABLE STUDENT
@@ -92,7 +92,7 @@ VALUES ('IK-201', 'IKT', 125, 2);
 INSERT INTO STUDENT
 VALUES (4, 'Dasha', 'Dashev', 'Dashevich', 'BUDGET', 'IKT', 'IK-201', 93.9);
 INSERT INTO STUDENT
-VALUES (5, 'Abdul', 'Abdulov', 'Abdulovich', 'CONTRACT', 'IKT',  'IK-201', 73.5);
+VALUES (5, 'Abdul', 'Abdulov', 'Abdulovich', 'CONTRACT', 'IKT', 'IK-201', 73.5);
 
 INSERT INTO FACULTY
 VALUES ('IC');
@@ -101,6 +101,4 @@ VALUES (074);
 INSERT INTO `GROUP`
 VALUES ('MN-401', 'IC', 074, 4);
 INSERT INTO STUDENT
-VALUES (6, 'Vlad', 'Vladov', 'Vladovich', 'CONTRACT', 'IC',  'MN-401', 64.6);
-
-SELECT * FROM `GROUP` where faculty_name = 'IKCT';
+VALUES (6, 'Vlad', 'Vladov', 'Vladovich', 'CONTRACT', 'IC', 'MN-401', 64.6);

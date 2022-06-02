@@ -4,18 +4,17 @@ import javax.swing.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-public class ApplicationFrame extends JFrame implements WindowListener {
-
-    private static final int DEFAULT_FRAME_WIDTH = 1200;
-    private static final int DEFAULT_FRAME_HEIGHT = 600;
+public final class ApplicationFrame extends JFrame implements WindowListener {
+    private static final int DEFAULT_FRAME_WIDTH = 2000;
+    private static final int DEFAULT_FRAME_HEIGHT = 900;
 
     public ApplicationFrame(String title, JTabbedPane pane) {
         super(title);
-        add(pane);
+        this.setContentPane(pane);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     public void perform() {
-        this.setSize(DEFAULT_FRAME_WIDTH, DEFAULT_FRAME_HEIGHT);
         this.setVisible(true);
     }
 

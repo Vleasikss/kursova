@@ -19,7 +19,7 @@ public final class DatabaseConnector {
         }
     }
 
-    private static final String JDBC_StudentNAME = properties.getProperty("jdbc.Studentname");
+    private static final String JDBC_USERNAME = properties.getProperty("jdbc.username");
     private static final String JDBC_PASSWORD = properties.getProperty("jdbc.password");
     private static final String JDBC_DATABASE_NAME = properties.getProperty("jdbc.database");
     private static final String JDBC_HOST = properties.getProperty("jdbc.host");
@@ -34,7 +34,7 @@ public final class DatabaseConnector {
 
     public static Connection getConnection() {
         try {
-            return DriverManager.getConnection(JDBC_URL, JDBC_StudentNAME, JDBC_PASSWORD);
+            return DriverManager.getConnection(JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD);
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Unable to create connection for " + JDBC_URL);

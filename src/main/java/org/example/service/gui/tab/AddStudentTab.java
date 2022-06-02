@@ -1,257 +1,303 @@
 package org.example.service.gui.tab;
 
+import org.example.model.Faculty;
+import org.example.model.Group;
+import org.example.model.Student;
+import org.example.model.StudyForm;
+import org.example.service.db.dao.FacultyDatabaseHelper;
+import org.example.service.db.dao.GroupDatabaseHelper;
+import org.example.service.db.dao.StudentDatabaseHelper;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
-public class AddStudentTab extends JPanel implements FrameTab, ActionListener {
+public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
 
-    private static final String ADD_STUDENT_TAB_TITLE = "add student";
+    private static final Rectangle ADD_STUDENT_BOUNDS = new Rectangle(300, 90, 1200, 700);
+
+    private static final Font TITLE_FONT = new Font("Arial", Font.PLAIN, 30);
+    private static final Font ANY_LABEL_FONT = new Font("Arial", Font.PLAIN, 20);
+    private static final Font ANY_TEXT_FIELD_FONT = new Font("Arial", Font.PLAIN, 15);
+
+    private static final Dimension ANY_LABEL_DIMENSION = new Dimension(150, 20);
+    private static final Dimension ANY_TEXT_FIELD_DIMENSION = new Dimension(190, 20);
+
+    private static final AllStudentsTab allStudentsTab = AllStudentsTab.getInstance();
+
+    private final GroupDatabaseHelper groupDatabaseHelper;
+    private final StudentDatabaseHelper studentDatabaseHelper;
+
+    private final JTextField lastNameTf;
+    private final JTextField firstNameTf;
+    private final JComboBox<String> facultiesComboBox;
+    private final JTextField patronymicTf;
+    private final JTextField ratingScoreTf;
+    private final JComboBox<StudyForm> studyFormsComboBox;
+    private final JCheckBox termsCheckBox;
+    private final JButton submitButton;
+    private final JButton resetButton;
+    private final JLabel resultLabel;
+    private JComboBox<String> groupsComboBox;
 
 
-    // Components of the Form
-    private Container c = new JPanel();
-    private JLabel title;
-    private JLabel name;
-    private JTextField tname;
-    private JLabel mno;
-    private JTextField tmno;
-    private JLabel gender;
-    private JRadioButton male;
-    private JRadioButton female;
-    private ButtonGroup gengp;
-    private JLabel dob;
-    private JComboBox date;
-    private JComboBox month;
-    private JComboBox year;
-    private JLabel add;
-    private JTextArea tadd;
-    private JCheckBox term;
-    private JButton sub;
-    private JButton reset;
-    private JTextArea tout;
-    private JLabel res;
-    private JTextArea resadd;
-
-    private String dates[]
-            = { "1", "2", "3", "4", "5",
-            "6", "7", "8", "9", "10",
-            "11", "12", "13", "14", "15",
-            "16", "17", "18", "19", "20",
-            "21", "22", "23", "24", "25",
-            "26", "27", "28", "29", "30",
-            "31" };
-    private String months[]
-            = { "Jan", "feb", "Mar", "Apr",
-            "May", "Jun", "July", "Aug",
-            "Sup", "Oct", "Nov", "Dec" };
-    private String years[]
-            = { "1995", "1996", "1997", "1998",
-            "1999", "2000", "2001", "2002",
-            "2003", "2004", "2005", "2006",
-            "2007", "2008", "2009", "2010",
-            "2011", "2012", "2013", "2014",
-            "2015", "2016", "2017", "2018",
-            "2019" };
+    @Override
+    public List<Component> components() {
+        return List.of(getComponents());
+    }
 
     @Override
     public String title() {
-        return ADD_STUDENT_TAB_TITLE;
-    }
-
-    @Override
-    public Component apply() {
-        return this;
+        return "add a student";
     }
 
     public AddStudentTab() {
-        setBounds(300, 90, 900, 600);
+        this.groupDatabaseHelper = new GroupDatabaseHelper();
+        this.studentDatabaseHelper = new StudentDatabaseHelper();
+        FacultyDatabaseHelper facultyDatabaseHelper = new FacultyDatabaseHelper();
 
-        title = new JLabel("Registration Form");
-        title.setFont(new Font("Arial", Font.PLAIN, 30));
-        title.setSize(300, 30);
-        title.setLocation(300, 30);
+        setBounds(ADD_STUDENT_BOUNDS);
+
+        Container c = getContentPane();
+        c.setLayout(null);
+
+        JLabel title = new JLabel("Student's Registration Form");
+        title.setFont(TITLE_FONT);
+        title.setSize(450, 30);
+        title.setLocation(425, 30);
         c.add(title);
 
-        name = new JLabel("Name");
-        name.setFont(new Font("Arial", Font.PLAIN, 20));
-        name.setSize(100, 20);
-        name.setLocation(100, 100);
-        c.add(name);
+        JLabel firstNameLabel = new JLabel("First name");
+        firstNameLabel.setFont(ANY_LABEL_FONT);
+        firstNameLabel.setSize(ANY_LABEL_DIMENSION);
+        firstNameLabel.setLocation(400, 100);
+        c.add(firstNameLabel);
 
-        tname = new JTextField();
-        tname.setFont(new Font("Arial", Font.PLAIN, 15));
-        tname.setSize(190, 20);
-        tname.setLocation(200, 100);
-        c.add(tname);
+        firstNameTf = new JTextField();
+        firstNameTf.setFont(ANY_TEXT_FIELD_FONT);
+        firstNameTf.setSize(ANY_TEXT_FIELD_DIMENSION);
+        firstNameTf.setLocation(650, 100);
+        c.add(firstNameTf);
 
-        mno = new JLabel("Mobile");
-        mno.setFont(new Font("Arial", Font.PLAIN, 20));
-        mno.setSize(100, 20);
-        mno.setLocation(100, 150);
-        c.add(mno);
+        JLabel lastNameLabel = new JLabel("Last name");
+        lastNameLabel.setFont(ANY_LABEL_FONT);
+        lastNameLabel.setSize(ANY_LABEL_DIMENSION);
+        lastNameLabel.setLocation(400, 150);
+        c.add(lastNameLabel);
 
-        tmno = new JTextField();
-        tmno.setFont(new Font("Arial", Font.PLAIN, 15));
-        tmno.setSize(150, 20);
-        tmno.setLocation(200, 150);
-        c.add(tmno);
+        lastNameTf = new JTextField();
+        lastNameTf.setFont(ANY_TEXT_FIELD_FONT);
+        lastNameTf.setSize(ANY_TEXT_FIELD_DIMENSION);
+        lastNameTf.setLocation(650, 150);
+        c.add(lastNameTf);
 
-        gender = new JLabel("Gender");
-        gender.setFont(new Font("Arial", Font.PLAIN, 20));
-        gender.setSize(100, 20);
-        gender.setLocation(100, 200);
-        c.add(gender);
+        JLabel patronymicLabel = new JLabel("Patronymic");
+        patronymicLabel.setFont(ANY_LABEL_FONT);
+        patronymicLabel.setSize(ANY_LABEL_DIMENSION);
+        patronymicLabel.setLocation(400, 200);
+        c.add(patronymicLabel);
 
-        male = new JRadioButton("Male");
-        male.setFont(new Font("Arial", Font.PLAIN, 15));
-        male.setSelected(true);
-        male.setSize(75, 20);
-        male.setLocation(200, 200);
-        c.add(male);
+        patronymicTf = new JTextField();
+        patronymicTf.setFont(ANY_TEXT_FIELD_FONT);
+        patronymicTf.setSize(ANY_TEXT_FIELD_DIMENSION);
+        patronymicTf.setLocation(650, 200);
+        c.add(patronymicTf);
 
-        female = new JRadioButton("Female");
-        female.setFont(new Font("Arial", Font.PLAIN, 15));
-        female.setSelected(false);
-        female.setSize(80, 20);
-        female.setLocation(275, 200);
-        c.add(female);
+        JLabel form = new JLabel("Form");
+        form.setFont(ANY_LABEL_FONT);
+        form.setSize(ANY_LABEL_DIMENSION);
+        form.setLocation(400, 250);
+        c.add(form);
 
-        gengp = new ButtonGroup();
-        gengp.add(male);
-        gengp.add(female);
+        studyFormsComboBox = new JComboBox<>(StudyForm.values());
+        studyFormsComboBox.setFont(new Font("Arial", Font.PLAIN, 15));
+        studyFormsComboBox.setSize(125, 20);
+        studyFormsComboBox.setLocation(650, 250);
+        c.add(studyFormsComboBox);
 
-        dob = new JLabel("DOB");
-        dob.setFont(new Font("Arial", Font.PLAIN, 20));
-        dob.setSize(100, 20);
-        dob.setLocation(100, 250);
-        c.add(dob);
+        JLabel facultyLabel = new JLabel("Faculty");
+        facultyLabel.setFont(ANY_LABEL_FONT);
+        facultyLabel.setSize(ANY_LABEL_DIMENSION);
+        facultyLabel.setLocation(400, 300);
+        c.add(facultyLabel);
 
-        date = new JComboBox(dates);
-        date.setFont(new Font("Arial", Font.PLAIN, 15));
-        date.setSize(50, 20);
-        date.setLocation(200, 250);
-        c.add(date);
+        facultiesComboBox = new JComboBox<>(getAllFacultyNames(facultyDatabaseHelper));
+        facultiesComboBox.setFont(new Font("Arial", Font.PLAIN, 15));
+        facultiesComboBox.setSize(100, 20);
+        facultiesComboBox.setLocation(650, 300);
+        c.add(facultiesComboBox);
 
-        month = new JComboBox(months);
-        month.setFont(new Font("Arial", Font.PLAIN, 15));
-        month.setSize(60, 20);
-        month.setLocation(250, 250);
-        c.add(month);
+        JLabel groupsLabel = new JLabel("Groups");
+        groupsLabel.setFont(ANY_LABEL_FONT);
+        groupsLabel.setSize(ANY_LABEL_DIMENSION);
+        groupsLabel.setLocation(400, 350);
+        c.add(groupsLabel);
 
-        year = new JComboBox(years);
-        year.setFont(new Font("Arial", Font.PLAIN, 15));
-        year.setSize(60, 20);
-        year.setLocation(320, 250);
-        c.add(year);
+        String[] allGroupsByFacultyName = getAllGroups(
+                groupDatabaseHelper,
+                Objects.requireNonNull(facultiesComboBox.getSelectedItem()).toString()
+        );
+        groupsComboBox = new JComboBox<>(allGroupsByFacultyName);
+        groupsComboBox.setFont(new Font("Arial", Font.PLAIN, 15));
+        groupsComboBox.setSize(100, 20);
+        groupsComboBox.setLocation(650, 350);
+        c.add(groupsComboBox);
 
-        add = new JLabel("Address");
-        add.setFont(new Font("Arial", Font.PLAIN, 20));
-        add.setSize(100, 20);
-        add.setLocation(100, 300);
-        c.add(add);
+        facultiesComboBox.addActionListener(e -> {
+            String selectedItem = Objects.requireNonNull(facultiesComboBox.getSelectedItem()).toString();
+            c.remove(groupsComboBox);
+            String[] allGroups = getAllGroups(groupDatabaseHelper, selectedItem);
+            groupsComboBox = new JComboBox<>(allGroups);
+            groupsComboBox.setFont(new Font("Arial", Font.PLAIN, 15));
+            groupsComboBox.setSize(100, 20);
+            groupsComboBox.setLocation(650, 350);
+            c.add(groupsComboBox);
+        });
 
-        tadd = new JTextArea();
-        tadd.setFont(new Font("Arial", Font.PLAIN, 15));
-        tadd.setSize(200, 75);
-        tadd.setLocation(200, 300);
-        tadd.setLineWrap(true);
-        c.add(tadd);
+        JLabel ratingScoreLabel = new JLabel("Rating Score");
+        ratingScoreLabel.setFont(ANY_LABEL_FONT);
+        ratingScoreLabel.setSize(ANY_LABEL_DIMENSION);
+        ratingScoreLabel.setLocation(400, 400);
+        c.add(ratingScoreLabel);
 
-        term = new JCheckBox("Accept Terms And Conditions.");
-        term.setFont(new Font("Arial", Font.PLAIN, 15));
-        term.setSize(250, 20);
-        term.setLocation(150, 400);
-        c.add(term);
+        ratingScoreTf = new JTextField();
+        ratingScoreTf.setFont(ANY_TEXT_FIELD_FONT);
+        ratingScoreTf.setSize(ANY_TEXT_FIELD_DIMENSION);
+        ratingScoreTf.setLocation(650, 400);
+        c.add(ratingScoreTf);
 
-        sub = new JButton("Submit");
-        sub.setFont(new Font("Arial", Font.PLAIN, 15));
-        sub.setSize(100, 20);
-        sub.setLocation(150, 450);
-        sub.addActionListener(this);
-        c.add(sub);
+        termsCheckBox = new JCheckBox("Accept Terms And Conditions.");
+        termsCheckBox.setFont(new Font("Arial", Font.PLAIN, 15));
+        termsCheckBox.setSize(250, 20);
+        termsCheckBox.setLocation(550, 450);
+        c.add(termsCheckBox);
 
-        reset = new JButton("Reset");
-        reset.setFont(new Font("Arial", Font.PLAIN, 15));
-        reset.setSize(100, 20);
-        reset.setLocation(270, 450);
-        reset.addActionListener(this);
-        c.add(reset);
+        submitButton = new JButton("Submit");
+        submitButton.setFont(new Font("Arial", Font.PLAIN, 15));
+        submitButton.setSize(100, 20);
+        submitButton.setLocation(550, 500);
+        submitButton.addActionListener(this);
+        c.add(submitButton);
 
-        tout = new JTextArea();
-        tout.setFont(new Font("Arial", Font.PLAIN, 15));
-        tout.setSize(300, 400);
-        tout.setLocation(500, 100);
-        tout.setLineWrap(true);
-        tout.setEditable(false);
-        c.add(tout);
+        resetButton = new JButton("Reset");
+        resetButton.setFont(new Font("Arial", Font.PLAIN, 15));
+        resetButton.setSize(100, 20);
+        resetButton.setLocation(700, 500);
+        resetButton.addActionListener(this);
+        c.add(resetButton);
 
-        res = new JLabel("");
-        res.setFont(new Font("Arial", Font.PLAIN, 20));
-        res.setSize(500, 25);
-        res.setLocation(100, 500);
-        c.add(res);
+        resultLabel = new JLabel("");
+        resultLabel.setFont(ANY_LABEL_FONT);
+        resultLabel.setSize(1200, 25);
+        resultLabel.setLocation(400, 550);
+        c.add(resultLabel);
 
-        resadd = new JTextArea();
-        resadd.setFont(new Font("Arial", Font.PLAIN, 15));
-        resadd.setSize(200, 75);
-        resadd.setLocation(580, 175);
-        resadd.setLineWrap(true);
-        c.add(resadd);
     }
 
-    // method actionPerformed()
-    // to get the action performed
-    // by the Student and act accordingly
-    public void actionPerformed(ActionEvent e)
-    {
-        if (e.getSource() == sub) {
-            if (term.isSelected()) {
-                String data1;
-                String data
-                        = "Name : "
-                        + tname.getText() + "\n"
-                        + "Mobile : "
-                        + tmno.getText() + "\n";
-                if (male.isSelected())
-                    data1 = "Gender : Male"
-                            + "\n";
-                else
-                    data1 = "Gender : Female"
-                            + "\n";
-                String data2
-                        = "DOB : "
-                        + (String)date.getSelectedItem()
-                        + "/" + (String)month.getSelectedItem()
-                        + "/" + (String)year.getSelectedItem()
-                        + "\n";
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == submitButton) {
+            Optional<String> maybeError = validateForm();
+            if (maybeError.isEmpty()) {
 
-                String data3 = "Address : " + tadd.getText();
-                tout.setText(data + data1 + data2 + data3);
-                tout.setEditable(false);
-                res.setText("Registration Successfully..");
-            }
-            else {
-                tout.setText("");
-                resadd.setText("");
-                res.setText("Please accept the"
-                        + " terms & conditions..");
-            }
-        }
+                StudyForm form = matchStudyForm();
+                Student student = Student.newBuilder()
+                        .setFirstName(firstNameTf.getText())
+                        .setLastName(lastNameTf.getText())
+                        .setPatronymic(patronymicTf.getText())
+                        .setForm(form)
+                        .setFacultyId(Objects.requireNonNull(facultiesComboBox.getSelectedItem()).toString())
+                        .setGroupId(Objects.requireNonNull(groupsComboBox.getSelectedItem()).toString())
+                        .setRatingScore(Double.parseDouble(ratingScoreTf.getText()))
+                        .build();
+                studentDatabaseHelper.insert(student);
 
-        else if (e.getSource() == reset) {
-            String def = "";
-            tname.setText(def);
-            tadd.setText(def);
-            tmno.setText(def);
-            res.setText(def);
-            tout.setText(def);
-            term.setSelected(false);
-            date.setSelectedIndex(0);
-            month.setSelectedIndex(0);
-            year.setSelectedIndex(0);
-            resadd.setText(def);
+                resultLabel.setForeground(Color.GREEN);
+                resultLabel.setText("Registration Successfully..");
+
+                allStudentsTab.reload();
+                reset(false);
+            } else {
+                resultLabel.setForeground(Color.RED);
+                resultLabel.setText(maybeError.get());
+            }
+        } else if (e.getSource() == resetButton) {
+            reset(true);
         }
+    }
+
+    /**
+     * @return maybe string error if registration form contains some invalid inputs
+     */
+    private Optional<String> validateForm() {
+        if (isNullOrEmpty(firstNameTf.getText())) {
+            return Optional.of("Firstname can't be empty");
+        }
+        if (isNullOrEmpty(lastNameTf.getText())) {
+            return Optional.of("Lastname can't be empty");
+        }
+        if (isNullOrEmpty(patronymicTf.getText())) {
+            return Optional.of("Patronymic can't be empty");
+        }
+        if (matchStudyForm() == null) {
+            return Optional.of("Study form can't be empty");
+        }
+        if (isNullOrEmpty(ratingScoreTf.getText()) || !isValidRatingScore(ratingScoreTf.getText())) {
+            return Optional.of("Invalid rating score. Rating score must be not less than 0.0 and no more than 100 points");
+        }
+        if (!termsCheckBox.isSelected()) {
+            return Optional.of("Please accept the terms & conditions..");
+        }
+        return Optional.empty();
+    }
+
+    private StudyForm matchStudyForm() {
+        return StudyForm.valueOf(Objects.requireNonNull(studyFormsComboBox.getSelectedItem()).toString());
+    }
+
+    private void reset(boolean fullReset) {
+        String def = "";
+        lastNameTf.setText(def);
+        firstNameTf.setText(def);
+        patronymicTf.setText(def);
+        studyFormsComboBox.setSelectedIndex(0);
+        facultiesComboBox.setSelectedIndex(0);
+        groupsComboBox.setSelectedIndex(0);
+        ratingScoreTf.setText(def);
+        if (fullReset) {
+            resultLabel.setText(def);
+        }
+    }
+
+    private static boolean isValidRatingScore(String rawRatingScore) {
+        if (!isDouble(rawRatingScore)) {
+            return false;
+        }
+        double ratingScore = Double.parseDouble(rawRatingScore);
+        return ratingScore >= 0.0d && ratingScore <= 100;
+    }
+
+    private static boolean isNullOrEmpty(String someStr) {
+        return someStr == null || someStr.isEmpty();
+    }
+
+    private static boolean isDouble(String someValue) {
+        try {
+            Double.parseDouble(someValue);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private static String[] getAllFacultyNames(FacultyDatabaseHelper facultyDatabaseHelper) {
+        return facultyDatabaseHelper.findAll().stream().map(Faculty::getName).toArray(String[]::new);
+    }
+
+    private static String[] getAllGroups(GroupDatabaseHelper groupDatabaseHelper, String facultyName) {
+        return groupDatabaseHelper.findByFacultyName(facultyName).stream().map(Group::getName).toArray(String[]::new);
     }
 }

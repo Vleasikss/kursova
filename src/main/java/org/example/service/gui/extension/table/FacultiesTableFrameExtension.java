@@ -6,7 +6,7 @@ import org.example.service.gui.extension.button.ShowButton;
 import org.example.service.gui.extension.table.util.JTableButtonModel;
 import org.example.service.gui.extension.table.util.JTableButtonMouseListener;
 import org.example.service.gui.extension.table.util.JTableButtonRenderer;
-import org.example.service.gui.tab.id.FacultyByIdTab;
+import org.example.service.gui.tab.AllGroupsByFacultyNameTab;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
@@ -28,12 +28,12 @@ public class FacultiesTableFrameExtension implements FrameExtension {
 
     @Override
     public Component apply() {
-        String[] columns = {"action"};
+        String[] columns = {"faculty"};
         Object[][] data = new Object[faculties.size()][columns.length];
 
         for (int i = 0; i < faculties.size(); i++) {
             Faculty faculty = faculties.get(i);
-            FacultyByIdTab facultyByIdTab = new FacultyByIdTab(faculty);
+            AllGroupsByFacultyNameTab facultyByIdTab = new AllGroupsByFacultyNameTab(faculty);
             data[i][0] = new ShowButton(facultyByIdTab);
         }
 

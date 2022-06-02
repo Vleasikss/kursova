@@ -6,23 +6,12 @@ public class Student {
     private String firstName;
     private String lastName;
     private String patronymic;
-    private String form;
+    private StudyForm form;
     private String groupId;
     private String facultyId;
     private Double ratingScore;
 
     public Student() {
-    }
-
-    public Student(Long id, String firstName, String lastName, String patronymic, String form, String groupId, String facultyId, Double ratingScore) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.patronymic = patronymic;
-        this.form = form;
-        this.groupId = groupId;
-        this.facultyId = facultyId;
-        this.ratingScore = ratingScore;
     }
 
     public String getFacultyId() {
@@ -73,11 +62,11 @@ public class Student {
         this.patronymic = patronymic;
     }
 
-    public String getForm() {
+    public StudyForm getForm() {
         return form;
     }
 
-    public void setForm(String form) {
+    public void setForm(StudyForm form) {
         this.form = form;
     }
 
@@ -87,6 +76,64 @@ public class Student {
 
     public void setRatingScore(Double ratingScore) {
         this.ratingScore = ratingScore;
+    }
+
+    public static Builder newBuilder() {
+        return new Student().new Builder();
+    }
+
+    public class Builder {
+
+        private Builder() {
+        }
+
+        public Builder setLastName(String lastName) {
+            Student.this.lastName = lastName;
+
+            return this;
+        }
+
+        public Builder setFirstName(String firstName) {
+            Student.this.firstName = firstName;
+
+            return this;
+        }
+
+        public Builder setPatronymic(String patronymic) {
+            Student.this.patronymic = patronymic;
+
+            return this;
+        }
+
+        public Builder setForm(StudyForm form) {
+            Student.this.form = form;
+
+            return this;
+        }
+
+        public Builder setGroupId(String groupId) {
+            Student.this.groupId = groupId;
+
+            return this;
+        }
+
+        public Builder setFacultyId(String facultyId) {
+            Student.this.facultyId = facultyId;
+
+            return this;
+        }
+
+        public Builder setRatingScore(double ratingScore) {
+            Student.this.ratingScore = ratingScore;
+
+            return this;
+        }
+
+
+        public Student build() {
+            return Student.this;
+        }
+
     }
 
     @Override
