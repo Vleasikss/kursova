@@ -19,6 +19,7 @@ public interface FrameTab {
         pane.setSelectedIndex(pane.indexOfTab(title()));
     }
 
+
     default void reload() {
         ApplicationTabbedPane pane = ApplicationTabbedPane.getInstance();
         int indexOfTab = pane.indexOfTab(title());

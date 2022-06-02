@@ -6,7 +6,7 @@ import org.example.service.gui.extension.button.ShowButton;
 import org.example.service.gui.extension.table.util.JTableButtonModel;
 import org.example.service.gui.extension.table.util.JTableButtonMouseListener;
 import org.example.service.gui.extension.table.util.JTableButtonRenderer;
-import org.example.service.gui.tab.AllGroupsByFacultyNameTab;
+import org.example.service.gui.tab.AllCoursesByFacultyTab;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
@@ -33,8 +33,8 @@ public class FacultiesTableFrameExtension implements FrameExtension {
 
         for (int i = 0; i < faculties.size(); i++) {
             Faculty faculty = faculties.get(i);
-            AllGroupsByFacultyNameTab facultyByIdTab = new AllGroupsByFacultyNameTab(faculty);
-            data[i][0] = new ShowButton(facultyByIdTab);
+            AllCoursesByFacultyTab allCoursesByFacultyTab = new AllCoursesByFacultyTab(faculty);
+            data[i][0] = new ShowButton(allCoursesByFacultyTab);
         }
 
         JTable jt = new JTable(new JTableButtonModel(data, columns));

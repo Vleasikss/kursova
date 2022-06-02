@@ -1,7 +1,6 @@
 package org.example.service.gui.tab;
 
 import org.example.model.Faculty;
-import org.example.model.Group;
 import org.example.service.db.dao.GroupDatabaseHelper;
 import org.example.service.gui.extension.button.ShowButton;
 import org.example.service.gui.extension.table.util.JTableButtonModel;
@@ -30,21 +29,21 @@ public class AllCoursesByFacultyTab implements FrameTab {
 
     @Override
     public String title() {
-        return faculty.getName() + "-courses";
+        return faculty.getName();
     }
 
     @Override
     public List<Component> components() {
-        String[] columns = {"action", "course"};
+        String[] columns = {"course"};
 
         List<Integer> allDistinctCoursesByFacultyName = groupDatabaseHelper.findAllDistinctCoursesByFacultyName(faculty.getName());
 
         Object[][] data = new Object[allDistinctCoursesByFacultyName.size()][columns.length];
+        allDistinctCoursesByFacultyName.sort(Integer::compare);
 
         for (int i = 0; i < allDistinctCoursesByFacultyName.size(); i++) {
             int course = allDistinctCoursesByFacultyName.get(i);
-            AllStudentsByGroupNameTab groupByIdTab = new AllStudentsByGroupNameTab(null);
-            data[i][0] = new ShowButton(groupByIdTab);
+            data[i][0] = new ShowButton(new AllGroupsByFacultyNameAndCourseTab(faculty, course), String.valueOf(course));
         }
 
         JTable jt = new JTable(new JTableButtonModel(data, columns));
@@ -54,7 +53,7 @@ public class AllCoursesByFacultyTab implements FrameTab {
         jt.setDefaultRenderer(JButton.class, new JTableButtonRenderer(tableRenderer));
         jt.setBounds(TABLE_X, TABLE_Y, TABLE_WIDTH, TABLE_HEIGHT);
 
-        return null;
+        return List.of(new JScrollPane(jt));
     }
 
 }

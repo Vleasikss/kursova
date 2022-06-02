@@ -20,7 +20,7 @@ public class AllStudentsByGroupNameTab implements FrameTab {
 
     @Override
     public String title() {
-        return group.getName() + "-students";
+        return group.getName();
     }
 
     @Override

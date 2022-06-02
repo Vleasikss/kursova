@@ -2,6 +2,7 @@ package org.example.service.gui.tab;
 
 import org.example.model.Group;
 import org.example.model.Student;
+import org.example.model.StudyForm;
 import org.example.service.db.dao.StudentDatabaseHelper;
 import org.example.service.gui.extension.table.StudentsRatingScoreFrameExtension;
 
@@ -25,7 +26,8 @@ public class StudentsRatingScoreByGroupTab implements FrameTab {
 
     @Override
     public List<Component> components() {
-        List<Student> byGroupName = studentDatabaseHelper.findByGroupName(group.getName());
+        List<Student> byGroupName = studentDatabaseHelper.findByGroupNameAndStudyForm(group.getName(), StudyForm.BUDGET);
+
         return List.of(
                 new StudentsRatingScoreFrameExtension(byGroupName).apply()
         );

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class AllStudentsTab implements FrameTab {
 
-    private static final String ALL_STUDENTS_TAB_TITLE = "students";
+    private static final String ALL_STUDENTS_TAB_TITLE = "all-students";
     private static AllStudentsTab allStudentsTab;
 
     private final StudentDatabaseHelper studentDatabaseHelper;

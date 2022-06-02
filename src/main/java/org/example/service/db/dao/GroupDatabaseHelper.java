@@ -16,6 +16,8 @@ public class GroupDatabaseHelper implements DatabaseHelper<Group, String> {
     //language=sql
     private static final String FIND_GROUP_BY_FACULTY_NAME_QUERY = "SELECT * FROM `GROUP` where faculty_name = ?";
     //language=sql
+    private static final String FIND_GROUPS_BY_FACULTY_NAME_AND_COURSE_QUERY = "SELECT * FROM `GROUP` where faculty_name = ? and course = ?";
+    //language=sql
     private static final String FIND_ALL_GROUPS_QUERY = "SELECT * FROM `GROUP`";
     //language=SQL
     private static final String FIND_ALL_DISTINCT_COURSES_BY_FACULTY_NAME = "SELECT DISTINCT course as course FROM `GROUP` WHERE faculty_name = ?";
@@ -90,6 +92,37 @@ public class GroupDatabaseHelper implements DatabaseHelper<Group, String> {
                 Group group = new Group();
                 group.setName(groupName);
                 group.setFacultyName(facultyName1);
+                group.setSpecialtyName(specialityName);
+                group.setCourse(course);
+                groups.add(group);
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+
+            return groups;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<Group> findByFacultyNameAndCourse(String facultyName, int course) {
+        try {
+            Connection connection = DatabaseConnector.getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(FIND_GROUPS_BY_FACULTY_NAME_AND_COURSE_QUERY);
+            preparedStatement.setString(1, facultyName);
+            preparedStatement.setInt(2, course);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<Group> groups = new ArrayList<>();
+            while (resultSet.next()) {
+                String groupName = resultSet.getString("group_name");
+                int specialityName = resultSet.getInt("speciality_name");
+                Group group = new Group();
+                group.setName(groupName);
+                group.setFacultyName(facultyName);
                 group.setSpecialtyName(specialityName);
                 group.setCourse(course);
                 groups.add(group);
