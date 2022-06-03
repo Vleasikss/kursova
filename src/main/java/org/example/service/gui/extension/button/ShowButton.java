@@ -7,17 +7,12 @@ import javax.swing.*;
 public class ShowButton extends JButton {
 
     public ShowButton(FrameTab frameTab) {
-        setText(frameTab.title());
-        addActionListener(e -> {
-            frameTab.show();
-        });
+        this(frameTab, frameTab.title());
     }
 
     public ShowButton(FrameTab frameTab, String title) {
         setText(title);
-        addActionListener(e -> {
-            frameTab.show();
-        });
+        addActionListener(e -> frameTab.show());
     }
 
 }

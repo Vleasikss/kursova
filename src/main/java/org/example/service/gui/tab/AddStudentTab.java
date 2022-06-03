@@ -45,16 +45,6 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
     private JComboBox<String> groupsComboBox;
 
 
-    @Override
-    public List<Component> components() {
-        return List.of(getComponents());
-    }
-
-    @Override
-    public String title() {
-        return "add a student";
-    }
-
     public AddStudentTab() {
         this.groupDatabaseHelper = new GroupDatabaseHelper();
         this.studentDatabaseHelper = new StudentDatabaseHelper();
@@ -198,6 +188,45 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
 
     }
 
+    private static boolean isValidRatingScore(String rawRatingScore) {
+        if (!isDouble(rawRatingScore)) {
+            return false;
+        }
+        double ratingScore = Double.parseDouble(rawRatingScore);
+        return ratingScore >= 0.0d && ratingScore <= 100;
+    }
+
+    private static boolean isNullOrEmpty(String someStr) {
+        return someStr == null || someStr.isEmpty();
+    }
+
+    private static boolean isDouble(String someValue) {
+        try {
+            Double.parseDouble(someValue);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private static String[] getAllFacultyNames(FacultyDatabaseHelper facultyDatabaseHelper) {
+        return facultyDatabaseHelper.findAll().stream().map(Faculty::getName).toArray(String[]::new);
+    }
+
+    private static String[] getAllGroups(GroupDatabaseHelper groupDatabaseHelper, String facultyName) {
+        return groupDatabaseHelper.findByFacultyName(facultyName).stream().map(Group::getName).toArray(String[]::new);
+    }
+
+    @Override
+    public List<Component> components() {
+        return List.of(getComponents());
+    }
+
+    @Override
+    public String title() {
+        return "add a student";
+    }
+
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submitButton) {
             Optional<String> maybeError = validateForm();
@@ -270,34 +299,5 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
         if (fullReset) {
             resultLabel.setText(def);
         }
-    }
-
-    private static boolean isValidRatingScore(String rawRatingScore) {
-        if (!isDouble(rawRatingScore)) {
-            return false;
-        }
-        double ratingScore = Double.parseDouble(rawRatingScore);
-        return ratingScore >= 0.0d && ratingScore <= 100;
-    }
-
-    private static boolean isNullOrEmpty(String someStr) {
-        return someStr == null || someStr.isEmpty();
-    }
-
-    private static boolean isDouble(String someValue) {
-        try {
-            Double.parseDouble(someValue);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-    private static String[] getAllFacultyNames(FacultyDatabaseHelper facultyDatabaseHelper) {
-        return facultyDatabaseHelper.findAll().stream().map(Faculty::getName).toArray(String[]::new);
-    }
-
-    private static String[] getAllGroups(GroupDatabaseHelper groupDatabaseHelper, String facultyName) {
-        return groupDatabaseHelper.findByFacultyName(facultyName).stream().map(Group::getName).toArray(String[]::new);
     }
 }

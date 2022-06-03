@@ -9,9 +9,7 @@ import java.util.List;
 public class StudentTab extends JFrame implements FrameTab {
 
     private static final Rectangle STUDENT_BOUNDS = new Rectangle(300, 90, 1200, 700);
-
     private static final Font ANY_LABEL_FONT = new Font("Arial", Font.PLAIN, 20);
-
     private static final Dimension ANY_LABEL_DIMENSION = new Dimension(500, 20);
 
     private final Student student;

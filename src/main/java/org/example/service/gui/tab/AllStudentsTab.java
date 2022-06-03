@@ -33,7 +33,7 @@ public class AllStudentsTab implements FrameTab {
     @Override
     public List<Component> components() {
         return List.of(
-                new StudentsTableFrameExtension(studentDatabaseHelper.findAll()).apply(),
+                new StudentsTableFrameExtension(studentDatabaseHelper.findAll(), this).apply(),
                 new ShowButton(new AddStudentTab())
         );
     }

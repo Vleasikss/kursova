@@ -17,7 +17,7 @@ public class AllGroupsTab implements FrameTab {
         this.groupDatabaseHelper = new GroupDatabaseHelper();
     }
 
-    public static AllGroupsTab getInstance(){
+    public static AllGroupsTab getInstance() {
         if (allGroupsTab == null) {
             allGroupsTab = new AllGroupsTab();
         }

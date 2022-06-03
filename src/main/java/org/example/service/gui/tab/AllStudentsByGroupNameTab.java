@@ -26,7 +26,7 @@ public class AllStudentsByGroupNameTab implements FrameTab {
     @Override
     public List<Component> components() {
         return List.of(
-                new StudentsTableFrameExtension(studentDatabaseHelper.findByGroupName(group.getName())).apply(),
+                new StudentsTableFrameExtension(studentDatabaseHelper.findByGroupName(group.getName()), this).apply(),
                 new ShowButton(new AddStudentTab()),
                 new ShowButton(new StudentsRatingScoreByGroupTab(group, studentDatabaseHelper))
         );

@@ -149,7 +149,6 @@ public class StudentDatabaseHelper implements DatabaseHelper<Student, Long> {
             student.setGroupId(groupId);
 
 
-
             resultSet.close();
             preparedStatement.close();
             connection.close();
@@ -206,6 +205,7 @@ public class StudentDatabaseHelper implements DatabaseHelper<Student, Long> {
 
         }
     }
+
     public List<Student> findByGroupNameAndStudyForm(String groupName, StudyForm studyForm) {
         try {
             Connection connection = DatabaseConnector.getConnection();

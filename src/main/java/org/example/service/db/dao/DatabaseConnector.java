@@ -25,7 +25,6 @@ public final class DatabaseConnector {
     private static final String JDBC_HOST = properties.getProperty("jdbc.host");
     private static final String JDBC_PORT = properties.getProperty("jdbc.port");
     private static final String JDBC_DRIVER = properties.getProperty("jdbc.driver");
-
     private static final String JDBC_URL = "jdbc:" + JDBC_DRIVER + "://" + JDBC_HOST + ":" + JDBC_PORT + "/" + JDBC_DATABASE_NAME;
 
     private DatabaseConnector() {

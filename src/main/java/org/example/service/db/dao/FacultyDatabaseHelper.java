@@ -46,16 +46,13 @@ public class FacultyDatabaseHelper implements DatabaseHelper<Faculty, String> {
     }
 
 
-
     @Override
     public boolean insert(Faculty faculty) {
-//        todo
         return false;
     }
 
     @Override
     public boolean deleteById(String s) {
-//        todo
         return false;
     }
 

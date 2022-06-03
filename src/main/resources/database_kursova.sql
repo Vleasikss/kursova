@@ -20,12 +20,6 @@ CREATE TABLE FACULTY
     faculty_name varchar(64) not null primary key
 );
 
-CREATE TABLE SPECIALITY
-(
-    speciality_name int not null primary key,
-    max_courses_count int not null
-);
-
 CREATE TABLE `GROUP`
 (
     group_name      varchar(64) not null primary key,
@@ -59,8 +53,6 @@ ALTER TABLE `GROUP`
 
 INSERT INTO FACULTY
 VALUES ('IKCT');
-INSERT INTO SPECIALITY
-VALUES (122, 3);
 INSERT INTO `GROUP`
 VALUES ('IS-101', 'IKCT', 122, 1);
 INSERT INTO STUDENT
@@ -68,8 +60,6 @@ VALUES (1, 'Oleg', 'Olegov', 'Olegovich', 'CONTRACT', 'IKCT', 'IS-101', 88.3);
 
 INSERT INTO FACULTY
 VALUES ('FTAU');
-INSERT INTO SPECIALITY
-VALUES (064, 4);
 INSERT INTO `GROUP`
 VALUES ('OP-202', 'FTAU', 064, 2);
 INSERT INTO STUDENT
@@ -77,8 +67,6 @@ VALUES (2, 'Dima', 'Dimov', 'Dimovich', 'CONTRACT', 'FTAU', 'OP-202', 86.4);
 
 INSERT INTO FACULTY
 VALUES ('IT');
-INSERT INTO SPECIALITY
-VALUES (124, 6);
 INSERT INTO `GROUP`
 VALUES ('IA-302', 'IT', 124, 3);
 INSERT INTO STUDENT
@@ -86,8 +74,6 @@ VALUES (3, 'Alena', 'Alenovna', 'Alenovich', 'BUDGET', 'IT', 'IA-302', 70.6);
 
 INSERT INTO FACULTY
 VALUES ('IKT');
-INSERT INTO SPECIALITY
-VALUES (125, 4);
 INSERT INTO `GROUP`
 VALUES ('IK-201', 'IKT', 125, 2);
 INSERT INTO STUDENT
@@ -97,9 +83,9 @@ VALUES (5, 'Abdul', 'Abdulov', 'Abdulovich', 'CONTRACT', 'IKT', 'IK-201', 73.5);
 
 INSERT INTO FACULTY
 VALUES ('IC');
-INSERT INTO SPECIALITY
-VALUES (074, 4);
 INSERT INTO `GROUP`
 VALUES ('MN-401', 'IC', 074, 4);
 INSERT INTO STUDENT
 VALUES (6, 'Vlad', 'Vladov', 'Vladovich', 'CONTRACT', 'IC', 'MN-401', 64.6);
+
+# todo provide some real data

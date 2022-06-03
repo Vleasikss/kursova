@@ -1,7 +1,7 @@
 package org.example.model;
 
 
-public class Group {
+public class Group implements BasicModel {
 
     private String name;
     private String facultyName;

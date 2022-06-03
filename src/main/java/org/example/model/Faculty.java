@@ -1,6 +1,6 @@
 package org.example.model;
 
-public class Faculty {
+public class Faculty implements BasicModel {
 
     private String name;
 

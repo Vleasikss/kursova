@@ -21,6 +21,8 @@ public class GroupDatabaseHelper implements DatabaseHelper<Group, String> {
     private static final String FIND_ALL_GROUPS_QUERY = "SELECT * FROM `GROUP`";
     //language=SQL
     private static final String FIND_ALL_DISTINCT_COURSES_BY_FACULTY_NAME = "SELECT DISTINCT course as course FROM `GROUP` WHERE faculty_name = ?";
+    //language=SQL
+    private static final String DELETE_GROUP_BY_ID = "DELETE FROM `GROUP` WHERE group_name = ?";
 
     @Override
     public List<Group> findAll() {
@@ -64,7 +66,21 @@ public class GroupDatabaseHelper implements DatabaseHelper<Group, String> {
     }
 
     @Override
-    public boolean deleteById(String s) {
+    public boolean deleteById(String id) {
+        try {
+            Connection connection = DatabaseConnector.getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_GROUP_BY_ID);
+            preparedStatement.setString(1, id);
+
+            int countOfChanges = preparedStatement.executeUpdate();
+
+            connection.close();
+            preparedStatement.close();
+            return countOfChanges == 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 

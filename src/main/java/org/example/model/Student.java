@@ -1,6 +1,6 @@
 package org.example.model;
 
-public class Student {
+public class Student implements BasicModel {
 
     private Long id;
     private String firstName;
@@ -12,6 +12,10 @@ public class Student {
     private Double ratingScore;
 
     public Student() {
+    }
+
+    public static Builder newBuilder() {
+        return new Student().new Builder();
     }
 
     public String getFacultyId() {
@@ -78,8 +82,18 @@ public class Student {
         this.ratingScore = ratingScore;
     }
 
-    public static Builder newBuilder() {
-        return new Student().new Builder();
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", patronymic='" + patronymic + '\'' +
+                ", form='" + form + '\'' +
+                ", groupId='" + groupId + '\'' +
+                ", facultyId='" + facultyId + '\'' +
+                ", ratingScore=" + ratingScore +
+                '}';
     }
 
     public class Builder {
@@ -134,19 +148,5 @@ public class Student {
             return Student.this;
         }
 
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", patronymic='" + patronymic + '\'' +
-                ", form='" + form + '\'' +
-                ", groupId='" + groupId + '\'' +
-                ", facultyId='" + facultyId + '\'' +
-                ", ratingScore=" + ratingScore +
-                '}';
     }
 }
