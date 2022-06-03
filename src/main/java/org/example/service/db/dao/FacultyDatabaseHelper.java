@@ -48,7 +48,7 @@ public class FacultyDatabaseHelper implements DatabaseHelper<Faculty, String> {
 
 
     /**
-     * Not usable in the project
+     * Not usable in the project so ignored
      */
     @Override
     public boolean insert(Faculty faculty) {
@@ -56,7 +56,7 @@ public class FacultyDatabaseHelper implements DatabaseHelper<Faculty, String> {
     }
 
     /**
-     * Not usable in the project
+     * Not usable in the project so ignored
      */
     @Override
     public boolean deleteById(String s) {

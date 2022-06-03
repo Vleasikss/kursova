@@ -1,6 +1,5 @@
 package org.example.service.db.dao;
 
-import org.example.model.Faculty;
 import org.example.model.Student;
 import org.example.model.StudyForm;
 

@@ -61,6 +61,10 @@ public class GroupDatabaseHelper implements DatabaseHelper<Group, String> {
         return null;
     }
 
+    /**
+     * Not usable in the project so ignored
+     * @return false
+     */
     @Override
     public boolean insert(Group group) {
         return false;
