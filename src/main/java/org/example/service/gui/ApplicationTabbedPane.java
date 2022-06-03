@@ -5,7 +5,7 @@ import org.example.service.gui.tab.FrameTab;
 import javax.swing.*;
 
 /**
- * Main Application Tabbed Pane
+ * Main Singleton Application Tabbed Pane
  */
 public final class ApplicationTabbedPane extends JTabbedPane {
 
