@@ -1,7 +1,6 @@
 package org.example.service.db.dao;
 
 import org.example.model.Group;
-import org.example.model.Student;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,8 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
+/**
+ * JDBC DAO realization for a {@link Group}
+ */
 public class GroupDatabaseHelper implements DatabaseHelper<Group, String> {
 
     //language=sql
@@ -82,11 +83,6 @@ public class GroupDatabaseHelper implements DatabaseHelper<Group, String> {
             e.printStackTrace();
         }
         return false;
-    }
-
-    @Override
-    public Optional<Student> findById(String s) {
-        return Optional.empty();
     }
 
     public List<Group> findByFacultyName(String facultyName) {

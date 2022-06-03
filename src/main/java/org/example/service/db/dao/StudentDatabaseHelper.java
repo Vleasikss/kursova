@@ -1,5 +1,6 @@
 package org.example.service.db.dao;
 
+import org.example.model.Faculty;
 import org.example.model.Student;
 import org.example.model.StudyForm;
 
@@ -9,8 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
+/**
+ * JDBC DAO realization for a {@link Student}
+ */
 public class StudentDatabaseHelper implements DatabaseHelper<Student, Long> {
 
     //language=SQL
@@ -19,8 +22,6 @@ public class StudentDatabaseHelper implements DatabaseHelper<Student, Long> {
     private static final String INSERT_STUDENT_QUERY = "INSERT INTO STUDENT(first_name, last_name, patronymic, form, faculty_id, group_id, rating_score) VALUES (?, ?, ?, ?, ?, ?, ?)";
     //language=SQL
     private static final String DELETE_STUDENT_BY_ID_QUERY = "DELETE FROM STUDENT WHERE id = ?";
-    //language=SQL
-    private static final String FIND_STUDENT_BY_ID_QUERY = "SELECT * FROM STUDENT WHERE id = ?";
     //language=SQL
     private static final String FIND_STUDENTS_BY_GROUP_NAME_QUERY = "SELECT * FROM STUDENT where group_id = ?";
     //language=SQL
@@ -113,52 +114,6 @@ public class StudentDatabaseHelper implements DatabaseHelper<Student, Long> {
             e.printStackTrace();
         }
         return false;
-    }
-
-    @Override
-    public Optional<Student> findById(Long identifier) {
-        try {
-            Connection connection = DatabaseConnector.getConnection();
-
-            PreparedStatement preparedStatement = connection.prepareStatement(FIND_STUDENT_BY_ID_QUERY);
-            preparedStatement.setMaxRows(1);
-            preparedStatement.setLong(1, identifier);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (!resultSet.next()) {
-                return Optional.empty();
-            }
-
-            long id = resultSet.getLong("id");
-            String firstName = resultSet.getString("first_name");
-            String lastName = resultSet.getString("last_name");
-            String patronymic = resultSet.getString("patronymic");
-            String form = resultSet.getString("form");
-            double ratingScore = resultSet.getDouble("rating_score");
-            String facultyId = resultSet.getString("faculty_id");
-            String groupId = resultSet.getString("group_id");
-
-            Student student = new Student();
-            student.setId(id);
-            student.setFirstName(firstName);
-            student.setLastName(lastName);
-            student.setPatronymic(patronymic);
-            student.setForm(StudyForm.valueOf(form));
-            student.setRatingScore(ratingScore);
-            student.setFacultyId(facultyId);
-            student.setGroupId(groupId);
-
-
-            resultSet.close();
-            preparedStatement.close();
-            connection.close();
-
-            return Optional.of(student);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return Optional.empty();
-        }
-
     }
 
     public List<Student> findByGroupName(String groupName) {

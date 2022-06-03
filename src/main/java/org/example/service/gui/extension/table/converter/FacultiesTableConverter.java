@@ -6,6 +6,9 @@ import org.example.service.gui.tab.AllCoursesByFacultyTab;
 
 import java.util.List;
 
+/**
+ * realization of {@link TableConverter} which converts {@link Faculty} into dimensional array with required {@link FacultiesTableConverter#columns()}
+ **/
 public class FacultiesTableConverter implements TableConverter<Faculty> {
 
     @Override

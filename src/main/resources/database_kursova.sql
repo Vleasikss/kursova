@@ -1,8 +1,11 @@
+# DROP
 DROP DATABASE IF EXISTS kursova_project_java;
 
+# INIT DB
 CREATE DATABASE kursova_project_java;
 USE kursova_project_java;
 
+# INIT TABLES
 CREATE TABLE STUDENT
 (
     id           bigint primary key auto_increment,
@@ -42,12 +45,6 @@ ALTER TABLE `GROUP`
     ADD CONSTRAINT group_faculty_id
         FOREIGN KEY (faculty_name)
             REFERENCES FACULTY (faculty_name) ON DELETE CASCADE ON UPDATE CASCADE;
-
-ALTER TABLE `GROUP`
-    ADD CONSTRAINT group_speciality_id
-        FOREIGN KEY (speciality_name)
-            REFERENCES SPECIALITY (speciality_name) ON DELETE CASCADE ON UPDATE CASCADE;
-
 
 # PUT SOME MOCK DATA
 

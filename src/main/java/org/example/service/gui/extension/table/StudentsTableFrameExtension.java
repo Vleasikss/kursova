@@ -7,6 +7,9 @@ import org.example.service.gui.tab.FrameTab;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * Realization of {@link TableFrameExtension} for showing a table of {@link Student}
+ */
 public class StudentsTableFrameExtension extends TableFrameExtension<Student> {
 
     private static final Dimension STUDENTS_TABLE_FRAME_SIZE = new Dimension(1400, 800);

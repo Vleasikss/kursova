@@ -6,6 +6,9 @@ import org.example.service.gui.extension.table.GroupsTableFrameExtension;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * Frame Tab which shows all the groups
+ */
 public class AllGroupsTab implements FrameTab {
 
     private static final String ALL_GROUPS_TAB_TITLE = "all-groups";

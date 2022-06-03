@@ -1,24 +1,19 @@
 package org.example.service.gui.extension.table.converter;
 
 import org.example.model.Group;
-import org.example.service.gui.extension.button.DeleteActions;
-import org.example.service.gui.extension.button.DeleteModelButton;
 import org.example.service.gui.extension.button.ShowButton;
 import org.example.service.gui.tab.AllStudentsByGroupNameTab;
-import org.example.service.gui.tab.FrameTab;
 
 import java.util.List;
 
+/**
+ * realization of {@link TableConverter} which converts {@link Group} into dimensional array with required {@link GroupsTableConverter#columns()}
+ */
 public class GroupsTableConverter implements TableConverter<Group> {
-
-
-    public GroupsTableConverter() {
-    }
-
 
     @Override
     public String[] columns() {
-        return new String[] {"group"};
+        return new String[]{"group"};
     }
 
     @Override

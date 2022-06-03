@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * realization of {@link TableConverter} which converts {@link Student} into dimensional array with required {@link StudentsRatingScoreConverter#columns()}
+ */
 public class StudentsTableConverter implements TableConverter<Student> {
 
     private final FrameTab openedTab;

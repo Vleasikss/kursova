@@ -8,6 +8,9 @@ import org.example.service.gui.extension.table.StudentsTableFrameExtension;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * Frame Tab which shows all the students by {@link AllStudentsByGroupNameTab#group}
+ */
 public class AllStudentsByGroupNameTab implements FrameTab {
 
     private final Group group;
@@ -27,7 +30,6 @@ public class AllStudentsByGroupNameTab implements FrameTab {
     public List<Component> components() {
         return List.of(
                 new StudentsTableFrameExtension(studentDatabaseHelper.findByGroupName(group.getName()), this).apply(),
-                new ShowButton(new AddStudentTab()),
                 new ShowButton(new StudentsRatingScoreByGroupTab(group, studentDatabaseHelper))
         );
     }

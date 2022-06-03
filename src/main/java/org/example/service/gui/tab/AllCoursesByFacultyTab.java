@@ -12,6 +12,9 @@ import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * Frame tab which shows all the active courses which {@link Faculty} contains
+ */
 public class AllCoursesByFacultyTab implements FrameTab {
 
     private static final int TABLE_X = 30;

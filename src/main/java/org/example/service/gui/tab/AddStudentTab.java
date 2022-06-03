@@ -16,6 +16,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Frame Tab which shows a 'Student's Registration Form'
+ */
 public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
 
     private static final Rectangle ADD_STUDENT_BOUNDS = new Rectangle(300, 90, 1200, 700);

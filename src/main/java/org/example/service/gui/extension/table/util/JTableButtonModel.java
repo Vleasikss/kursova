@@ -2,6 +2,9 @@ package org.example.service.gui.extension.table.util;
 
 import javax.swing.table.AbstractTableModel;
 
+/**
+ * Manual realization of {@link AbstractTableModel}
+ */
 public class JTableButtonModel extends AbstractTableModel {
 
     private final Object[][] rows;

@@ -9,6 +9,9 @@ import org.example.service.gui.extension.table.StudentsRatingScoreFrameExtension
 import java.awt.*;
 import java.util.List;
 
+/**
+ * Frame Tab which shows all the students by {@link StudentsRatingScoreByGroupTab#group} sorted by Rating Score
+ */
 public class StudentsRatingScoreByGroupTab implements FrameTab {
 
     private final Group group;

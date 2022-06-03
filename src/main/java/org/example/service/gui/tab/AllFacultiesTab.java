@@ -6,6 +6,9 @@ import org.example.service.gui.extension.table.FacultiesTableFrameExtension;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * Frame Tab which shows all the Faculties
+ */
 public class AllFacultiesTab implements FrameTab {
 
     private static final String ALL_FACULTIES_TAB_TITLE = "all-faculties";

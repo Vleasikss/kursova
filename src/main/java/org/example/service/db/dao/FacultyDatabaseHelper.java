@@ -1,7 +1,6 @@
 package org.example.service.db.dao;
 
 import org.example.model.Faculty;
-import org.example.model.Student;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,8 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
+/**
+ * JDBC DAO realization for a {@link Faculty}
+ */
 public class FacultyDatabaseHelper implements DatabaseHelper<Faculty, String> {
 
     //language=SQL
@@ -46,19 +47,20 @@ public class FacultyDatabaseHelper implements DatabaseHelper<Faculty, String> {
     }
 
 
+    /**
+     * Not usable in the project
+     */
     @Override
     public boolean insert(Faculty faculty) {
         return false;
     }
 
+    /**
+     * Not usable in the project
+     */
     @Override
     public boolean deleteById(String s) {
         return false;
-    }
-
-    @Override
-    public Optional<Student> findById(String s) {
-        return Optional.empty();
     }
 
 }

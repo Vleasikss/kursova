@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * {@link MouseEvent} listener which uses to apply click actions for the {@link JButton} inside {@link JTable}
+ */
 public class JTableButtonMouseListener extends MouseAdapter {
 
     private final JTable table;
@@ -12,17 +15,26 @@ public class JTableButtonMouseListener extends MouseAdapter {
         this.table = table;
     }
 
+    /**
+     * Applies a click action for the {@link JButton} inside {@link JTable}
+     * @param e some mouse event
+     */
     public void mouseClicked(MouseEvent e) {
-        int column = table.getColumnModel().getColumnIndexAtX(e.getX()); // get the coloum of the button
-        int row = e.getY() / table.getRowHeight(); //get the row of the button
+        int column = table.getColumnModel().getColumnIndexAtX(e.getX());
+        int rowButton = e.getY() / table.getRowHeight();
 
-        /*Checking the row or column is valid or not*/
-        if (row < table.getRowCount() && row >= 0 && column < table.getColumnCount() && column >= 0) {
-            Object value = table.getValueAt(row, column);
+        if (isRowValid(rowButton) && isColumnValid(column)) {
+            Object value = table.getValueAt(rowButton, column);
             if (value instanceof JButton) {
-                /*perform a click event*/
                 ((JButton) value).doClick();
             }
         }
+    }
+
+    private boolean isRowValid(int rowButton) {
+        return rowButton < table.getRowCount() && rowButton >= 0;
+    }
+    private boolean isColumnValid(int column) {
+        return column < table.getColumnCount() && column >= 0;
     }
 }

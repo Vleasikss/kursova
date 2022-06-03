@@ -8,6 +8,9 @@ import org.example.service.gui.extension.table.GroupsTableFrameExtension;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * Frame Tab which shows all the groups by {@link Faculty#getName()} and {@link Group#getCourse()}
+ */
 public class AllGroupsByFacultyNameAndCourseTab implements FrameTab {
 
     private final Faculty faculty;

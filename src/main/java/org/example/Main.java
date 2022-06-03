@@ -2,9 +2,8 @@ package org.example;
 
 import org.example.service.gui.ApplicationFrame;
 import org.example.service.gui.ApplicationTabbedPane;
-import org.example.service.gui.tab.AllFacultiesTab;
-import org.example.service.gui.tab.AllGroupsTab;
-import org.example.service.gui.tab.AllStudentsTab;
+import org.example.service.gui.tab.StartTab;
+
 
 public class Main {
 
@@ -15,10 +14,7 @@ public class Main {
     );
 
     public static void main(String[] args) {
-        pane.addTab(AllFacultiesTab.getInstance());
-        pane.addTab(AllStudentsTab.getInstance());
-        pane.addTab(AllGroupsTab.getInstance());
-
+        pane.addTab(new StartTab());
         frame.perform();
     }
 

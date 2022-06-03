@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+/**
+ * Main Application Frame
+ */
 public final class ApplicationFrame extends JFrame implements WindowListener {
 
     public ApplicationFrame(String title, JTabbedPane pane) {

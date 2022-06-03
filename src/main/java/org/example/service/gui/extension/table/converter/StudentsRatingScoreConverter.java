@@ -6,6 +6,9 @@ import org.example.service.gui.tab.StudentTab;
 
 import java.util.List;
 
+/**
+ * realization of {@link TableConverter} which converts {@link Student} into dimensional array with required {@link StudentsRatingScoreConverter#columns()}
+ */
 public class StudentsRatingScoreConverter implements TableConverter<Student> {
 
     @Override

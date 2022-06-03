@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ *  Frame Tab which shows {@link StudentTab#student} Info
+ */
 public class StudentTab extends JFrame implements FrameTab {
 
     private static final Rectangle STUDENT_BOUNDS = new Rectangle(300, 90, 1200, 700);

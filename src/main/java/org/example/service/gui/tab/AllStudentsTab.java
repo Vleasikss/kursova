@@ -7,6 +7,9 @@ import org.example.service.gui.extension.table.StudentsTableFrameExtension;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * Frame Tab which shows all the students
+ */
 public class AllStudentsTab implements FrameTab {
 
     private static final String ALL_STUDENTS_TAB_TITLE = "all-students";

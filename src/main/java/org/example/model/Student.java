@@ -1,5 +1,6 @@
 package org.example.model;
 
+
 public class Student implements BasicModel {
 
     private Long id;
@@ -96,6 +97,11 @@ public class Student implements BasicModel {
                 '}';
     }
 
+    /**
+     * Builder pattern realization
+     *
+     * @see <a href="https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java">Joshua Bloch’s Builder design pattern in Java</a>
+     */
     public class Builder {
 
         private Builder() {

@@ -5,13 +5,16 @@ import org.example.service.gui.extension.table.converter.TableConverter;
 import org.example.service.gui.extension.table.util.JTableButtonModel;
 import org.example.service.gui.extension.table.util.JTableButtonMouseListener;
 import org.example.service.gui.extension.table.util.JTableButtonRenderer;
-import org.example.service.gui.tab.FrameTab;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * Abstraction over {@link FrameExtension} which shows Model tables in more declarative way
+ * @param <T> Model Type to show
+ */
 public abstract class TableFrameExtension<T> implements FrameExtension {
 
     private static final Dimension DEFAULT_TABLE_DIMENSION = new Dimension(700, 800);

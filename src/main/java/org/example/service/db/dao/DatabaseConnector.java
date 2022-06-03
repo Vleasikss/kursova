@@ -6,6 +6,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ * Basic MySQL Database Connector
+ */
 public final class DatabaseConnector {
 
     private static final Properties properties;
@@ -31,6 +34,9 @@ public final class DatabaseConnector {
 
     }
 
+    /**
+     * @return a JDBC connection with MySQL driver
+     */
     public static Connection getConnection() {
         try {
             return DriverManager.getConnection(JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD);
