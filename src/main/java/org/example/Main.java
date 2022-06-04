@@ -9,7 +9,7 @@ public class Main {
 
     private static final ApplicationTabbedPane pane = ApplicationTabbedPane.getInstance();
     private static final ApplicationFrame frame = new ApplicationFrame(
-            "application-title",
+            "student-management-system",
             pane
     );
 

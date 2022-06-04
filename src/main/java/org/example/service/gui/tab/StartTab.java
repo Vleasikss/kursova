@@ -11,11 +11,11 @@ import java.util.List;
  */
 public class StartTab implements FrameTab {
 
-    private static final Font START_PAGE_TITLE_FONT = new Font("Arial", Font.PLAIN, 42);
+    private static final Font START_PAGE_TITLE_FONT = new Font("Arial", Font.PLAIN, 38);
     private final JLabel welcomeLabel;
 
     public StartTab() {
-        JLabel welcomeLabel = new JLabel("Welcome! Check for these pages: ");
+        JLabel welcomeLabel = new JLabel("Welcome to Students' Management System: ");
         welcomeLabel.setFont(START_PAGE_TITLE_FONT);
         welcomeLabel.setBackground(Color.orange);
         this.welcomeLabel = welcomeLabel;

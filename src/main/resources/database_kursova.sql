@@ -1,9 +1,9 @@
 # DROP
-DROP DATABASE IF EXISTS kursova_project_java;
+DROP DATABASE IF EXISTS students_db;
 
 # INIT DB
-CREATE DATABASE kursova_project_java;
-USE kursova_project_java;
+CREATE DATABASE students_db;
+USE students_db;
 
 # INIT TABLES
 CREATE TABLE STUDENT

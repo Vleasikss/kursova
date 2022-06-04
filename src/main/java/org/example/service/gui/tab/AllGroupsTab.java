@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.List;
 
 /**
- * Frame Tab which shows all the groups
+ * Singleton Frame Tab which shows all the groups
  */
 public class AllGroupsTab implements FrameTab {
 

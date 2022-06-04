@@ -42,7 +42,6 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
     private final JTextField patronymicTf;
     private final JTextField ratingScoreTf;
     private final JComboBox<StudyForm> studyFormsComboBox;
-    private final JCheckBox termsCheckBox;
     private final JButton submitButton;
     private final JButton resetButton;
     private final JLabel resultLabel;
@@ -164,30 +163,24 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
         ratingScoreTf.setLocation(650, 400);
         c.add(ratingScoreTf);
 
-        termsCheckBox = new JCheckBox("Accept Terms And Conditions.");
-        termsCheckBox.setFont(new Font("Arial", Font.PLAIN, 15));
-        termsCheckBox.setSize(250, 20);
-        termsCheckBox.setLocation(550, 450);
-        c.add(termsCheckBox);
-
         submitButton = new JButton("Submit");
         submitButton.setFont(new Font("Arial", Font.PLAIN, 15));
         submitButton.setSize(100, 20);
-        submitButton.setLocation(550, 500);
+        submitButton.setLocation(550, 450);
         submitButton.addActionListener(this);
         c.add(submitButton);
 
         resetButton = new JButton("Reset");
         resetButton.setFont(new Font("Arial", Font.PLAIN, 15));
         resetButton.setSize(100, 20);
-        resetButton.setLocation(700, 500);
+        resetButton.setLocation(700, 450);
         resetButton.addActionListener(this);
         c.add(resetButton);
 
         resultLabel = new JLabel("");
         resultLabel.setFont(ANY_LABEL_FONT);
         resultLabel.setSize(1200, 25);
-        resultLabel.setLocation(400, 550);
+        resultLabel.setLocation(400, 500);
         c.add(resultLabel);
 
     }
@@ -307,9 +300,6 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
         }
         if (isNullOrEmpty(ratingScoreTf.getText()) || !isValidRatingScore(ratingScoreTf.getText())) {
             return Optional.of("Invalid rating score. Rating score must be not less than 0.0 and no more than 100 points");
-        }
-        if (!termsCheckBox.isSelected()) {
-            return Optional.of("Please accept the terms & conditions..");
         }
         return Optional.empty();
     }
