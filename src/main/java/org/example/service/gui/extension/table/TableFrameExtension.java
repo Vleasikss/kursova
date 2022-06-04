@@ -12,8 +12,8 @@ import java.awt.*;
 import java.util.List;
 
 /**
- * Abstraction over {@link FrameExtension} which to work with {@link JTable} in more declarative way
- * @param <T> Model Type to show
+ * Abstraction over {@link FrameExtension} to work with {@link JTable} in more declarative way
+ * @param <T> Model Type to show in {@link JTable}
  */
 public abstract class TableFrameExtension<T> implements FrameExtension {
 

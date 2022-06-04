@@ -23,6 +23,9 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
 
     private static final Rectangle ADD_STUDENT_BOUNDS = new Rectangle(300, 90, 1200, 700);
 
+    private static final double MAX_RATING_SCORE = 100.0d;
+    private static final double MIN_RATING_SCORE = 0.0d;
+
     private static final Font TITLE_FONT = new Font("Arial", Font.PLAIN, 30);
     private static final Font ANY_LABEL_FONT = new Font("Arial", Font.PLAIN, 20);
     private static final Font ANY_TEXT_FIELD_FONT = new Font("Arial", Font.PLAIN, 15);
@@ -191,18 +194,31 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
 
     }
 
+    /**
+     *
+     * @param rawRatingScore some string
+     * @return true if rawRatingScore {@link AddStudentTab#isDouble(String)} and in range between {@link AddStudentTab#MIN_RATING_SCORE} and {@link AddStudentTab#MAX_RATING_SCORE}
+     */
     private static boolean isValidRatingScore(String rawRatingScore) {
         if (!isDouble(rawRatingScore)) {
             return false;
         }
         double ratingScore = Double.parseDouble(rawRatingScore);
-        return ratingScore >= 0.0d && ratingScore <= 100;
+        return ratingScore >= MIN_RATING_SCORE && ratingScore <= MAX_RATING_SCORE;
     }
 
+    /**
+     * @param someStr some string or null
+     * @return true if string is null or empty
+     */
     private static boolean isNullOrEmpty(String someStr) {
         return someStr == null || someStr.isEmpty();
     }
 
+    /**
+     * @param someValue some string
+     * @return true if some string is can be converter into double
+     */
     private static boolean isDouble(String someValue) {
         try {
             Double.parseDouble(someValue);
@@ -212,10 +228,19 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
         }
     }
 
+    /**
+     * @param facultyDatabaseHelper Faculty Database Helper
+     * @return all faculties mapped into array of {@link Faculty#getName()}
+     */
     private static String[] getAllFacultyNames(FacultyDatabaseHelper facultyDatabaseHelper) {
         return facultyDatabaseHelper.findAll().stream().map(Faculty::getName).toArray(String[]::new);
     }
 
+    /**
+     * @param groupDatabaseHelper Group Database Helper
+     * @param facultyName faculty name
+     * @return all groups in facultyName mapped into array of {@link Group#getName()}
+     */
     private static String[] getAllGroups(GroupDatabaseHelper groupDatabaseHelper, String facultyName) {
         return groupDatabaseHelper.findByFacultyName(facultyName).stream().map(Group::getName).toArray(String[]::new);
     }
@@ -230,6 +255,11 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
         return "add a student";
     }
 
+    /**
+     * Listens to {@link AddStudentTab#submitButton} actions to submit student's registration into database
+     * Listens to {@link AddStudentTab#resetButton} actions to reset student's registration form
+     * @param e some event
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submitButton) {
             Optional<String> maybeError = validateForm();
@@ -286,10 +316,17 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
         return Optional.empty();
     }
 
+    /**
+     * @return {@link AddStudentTab#studyFormsComboBox} selected item converted into {@link StudyForm}
+     */
     private StudyForm matchStudyForm() {
         return StudyForm.valueOf(Objects.requireNonNull(studyFormsComboBox.getSelectedItem()).toString());
     }
 
+    /**
+     * Resets the form
+     * @param fullReset if true - resets fields with result labels
+     */
     private void reset(boolean fullReset) {
         String def = "";
         lastNameTf.setText(def);
