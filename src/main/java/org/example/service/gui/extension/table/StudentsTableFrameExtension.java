@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class StudentsTableFrameExtension extends TableFrameExtension<Student> {
 
-    private static final Dimension STUDENTS_TABLE_FRAME_SIZE = new Dimension(1000, 800);
+    private static final Dimension STUDENTS_TABLE_FRAME_SIZE = new Dimension(1000, 500);
 
     public StudentsTableFrameExtension(List<Student> students, FrameTab frameTab) {
         super(new StudentsTableConverter(frameTab), students, STUDENTS_TABLE_FRAME_SIZE);

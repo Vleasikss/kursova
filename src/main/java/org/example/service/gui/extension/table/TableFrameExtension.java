@@ -18,20 +18,20 @@ import java.util.List;
  */
 public abstract class TableFrameExtension<T> implements FrameExtension {
 
-    private static final Dimension DEFAULT_TABLE_DIMENSION = new Dimension(700, 800);
+    private static final Dimension DEFAULT_TABLE_DIMENSION = new Dimension(900, 400);
 
     private final TableConverter<T> converter;
     private final List<T> models;
     private final Dimension size;
 
-    public TableFrameExtension(TableConverter<T> t, List<T> models) {
-        this.converter = t;
+    public TableFrameExtension(TableConverter<T> converter, List<T> models) {
+        this.converter = converter;
         this.models = models;
         this.size = DEFAULT_TABLE_DIMENSION;
     }
 
-    public TableFrameExtension(TableConverter<T> t, List<T> models, Dimension size) {
-        this.converter = t;
+    public TableFrameExtension(TableConverter<T> converter, List<T> models, Dimension size) {
+        this.converter = converter;
         this.models = models;
         this.size = size;
     }
