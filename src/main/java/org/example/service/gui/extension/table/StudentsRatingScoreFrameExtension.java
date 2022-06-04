@@ -18,4 +18,5 @@ public class StudentsRatingScoreFrameExtension extends TableFrameExtension<Stude
                         .collect(Collectors.toList())
         );
     }
+
 }

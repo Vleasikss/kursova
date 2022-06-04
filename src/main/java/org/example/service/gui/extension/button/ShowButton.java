@@ -15,8 +15,9 @@ public class ShowButton extends JButton {
 
     /**
      * Creates a listener which calls {@link FrameTab#show()} per each button click
+     *
      * @param frameTab frame tab to show
-     * @param title button title
+     * @param title    button title
      */
     public ShowButton(FrameTab frameTab, String title) {
         setText(title);

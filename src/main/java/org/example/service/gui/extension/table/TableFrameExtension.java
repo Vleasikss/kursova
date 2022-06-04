@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * Abstraction over {@link FrameExtension} to work with {@link JTable} in more declarative way
+ *
  * @param <T> Model Type to show in {@link JTable}
  */
 public abstract class TableFrameExtension<T> implements FrameExtension {
@@ -35,7 +36,6 @@ public abstract class TableFrameExtension<T> implements FrameExtension {
         this.size = size;
     }
 
-
     @Override
     public Component apply() {
         Object[][] data = converter.convert(models);
@@ -48,4 +48,5 @@ public abstract class TableFrameExtension<T> implements FrameExtension {
         jt.setFillsViewportHeight(true);
         return new JScrollPane(jt);
     }
+
 }

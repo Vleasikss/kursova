@@ -37,5 +37,4 @@ public class AllGroupsTab implements FrameTab {
         return List.of(new GroupsTableFrameExtension(groupDatabaseHelper.findAll()).apply());
     }
 
-
 }

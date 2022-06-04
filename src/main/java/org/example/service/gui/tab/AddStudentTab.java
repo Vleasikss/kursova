@@ -186,7 +186,6 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
     }
 
     /**
-     *
      * @param rawRatingScore some string
      * @return true if rawRatingScore {@link AddStudentTab#isDouble(String)} and in range between {@link RatingScore#MIN} and {@link RatingScore#MAX}
      */
@@ -229,7 +228,7 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
 
     /**
      * @param groupDatabaseHelper Group Database Helper
-     * @param facultyName faculty name
+     * @param facultyName         faculty name
      * @return all groups in facultyName mapped into array of {@link Group#getName()}
      */
     private static String[] getAllGroups(GroupDatabaseHelper groupDatabaseHelper, String facultyName) {
@@ -249,6 +248,7 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
     /**
      * Listens to {@link AddStudentTab#submitButton} actions to submit student's registration into database
      * Listens to {@link AddStudentTab#resetButton} actions to reset student's registration form
+     *
      * @param e some event
      */
     public void actionPerformed(ActionEvent e) {
@@ -313,6 +313,7 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
 
     /**
      * Resets the form
+     *
      * @param fullReset if true - resets fields with result labels
      */
     private void reset(boolean fullReset) {
@@ -328,4 +329,5 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
             resultLabel.setText(def);
         }
     }
+
 }

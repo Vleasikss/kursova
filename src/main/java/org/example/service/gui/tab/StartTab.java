@@ -11,6 +11,8 @@ import java.util.List;
  */
 public class StartTab implements FrameTab {
 
+    private static final String START_TAB_TITLE = "start-page";
+
     private static final Font START_PAGE_TITLE_FONT = new Font("Arial", Font.PLAIN, 38);
     private final JLabel welcomeLabel;
 
@@ -24,7 +26,7 @@ public class StartTab implements FrameTab {
 
     @Override
     public String title() {
-        return "start-page";
+        return START_TAB_TITLE;
     }
 
     @Override
@@ -36,4 +38,5 @@ public class StartTab implements FrameTab {
                 new ShowButton(AllGroupsTab.getInstance())
         );
     }
+
 }

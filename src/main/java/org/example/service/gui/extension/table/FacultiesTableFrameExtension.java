@@ -13,4 +13,5 @@ public class FacultiesTableFrameExtension extends TableFrameExtension<Faculty> {
     public FacultiesTableFrameExtension(List<Faculty> faculties) {
         super(new FacultiesTableConverter(), faculties);
     }
+
 }
