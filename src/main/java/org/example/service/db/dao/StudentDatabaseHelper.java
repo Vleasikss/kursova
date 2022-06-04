@@ -96,6 +96,7 @@ public class StudentDatabaseHelper implements DatabaseHelper<Student, Long> {
         return false;
     }
 
+
     @Override
     public boolean deleteById(Long id) {
         try {
@@ -115,6 +116,12 @@ public class StudentDatabaseHelper implements DatabaseHelper<Student, Long> {
         return false;
     }
 
+    /**
+     * finds students by {@link StudentDatabaseHelper#FIND_STUDENTS_BY_GROUP_NAME_QUERY}
+     *
+     * @param groupName 1 query param
+     * @return founded students
+     */
     public List<Student> findByGroupName(String groupName) {
         try {
             Connection connection = DatabaseConnector.getConnection();
@@ -160,6 +167,13 @@ public class StudentDatabaseHelper implements DatabaseHelper<Student, Long> {
         }
     }
 
+    /**
+     * finds students by {@link StudentDatabaseHelper#FIND_STUDENTS_BY_GROUP_NAME_AND_STUDY_FORM_QUERY}
+     *
+     * @param groupName 1 query param
+     * @param studyForm 2 query param
+     * @return founded students
+     */
     public List<Student> findByGroupNameAndStudyForm(String groupName, StudyForm studyForm) {
         try {
             Connection connection = DatabaseConnector.getConnection();

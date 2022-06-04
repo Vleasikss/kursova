@@ -17,11 +17,11 @@ public class GroupsTableConverter implements TableConverter<Group> {
     }
 
     @Override
-    public Object[][] convert(List<Group> groups) {
-        Object[][] data = new Object[groups.size()][columns().length];
+    public Object[][] convert(List<Group> ts) {
+        Object[][] data = new Object[ts.size()][columns().length];
 
-        for (int i = 0; i < groups.size(); i++) {
-            Group group = groups.get(i);
+        for (int i = 0; i < ts.size(); i++) {
+            Group group = ts.get(i);
             AllStudentsByGroupNameTab groupByIdTab = new AllStudentsByGroupNameTab(group);
             data[i][0] = new ShowButton(groupByIdTab);
         }

@@ -17,11 +17,11 @@ public class FacultiesTableConverter implements TableConverter<Faculty> {
     }
 
     @Override
-    public Object[][] convert(List<Faculty> faculties) {
-        Object[][] data = new Object[faculties.size()][columns().length];
+    public Object[][] convert(List<Faculty> ts) {
+        Object[][] data = new Object[ts.size()][columns().length];
 
-        for (int i = 0; i < faculties.size(); i++) {
-            Faculty faculty = faculties.get(i);
+        for (int i = 0; i < ts.size(); i++) {
+            Faculty faculty = ts.get(i);
             AllCoursesByFacultyTab allCoursesByFacultyTab = new AllCoursesByFacultyTab(faculty);
             data[i][0] = new ShowButton(allCoursesByFacultyTab);
         }

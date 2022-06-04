@@ -89,6 +89,11 @@ public class GroupDatabaseHelper implements DatabaseHelper<Group, String> {
         return false;
     }
 
+    /**
+     * finds all groups by {@link GroupDatabaseHelper#FIND_GROUP_BY_FACULTY_NAME_QUERY} query
+     * @param facultyName faculty name to find the groups by
+     * @return founded groups
+     */
     public List<Group> findByFacultyName(String facultyName) {
         try {
             Connection connection = DatabaseConnector.getConnection();
@@ -123,6 +128,13 @@ public class GroupDatabaseHelper implements DatabaseHelper<Group, String> {
         }
     }
 
+    /**
+     * finds all groups by {@link GroupDatabaseHelper#FIND_GROUPS_BY_FACULTY_NAME_AND_COURSE_QUERY} query
+     *
+     * @param facultyName 1 query param
+     * @param course 2 query param
+     * @return founded groups
+     */
     public List<Group> findByFacultyNameAndCourse(String facultyName, int course) {
         try {
             Connection connection = DatabaseConnector.getConnection();
@@ -154,6 +166,12 @@ public class GroupDatabaseHelper implements DatabaseHelper<Group, String> {
         }
     }
 
+    /**
+     * finds all courses by {@link GroupDatabaseHelper#FIND_ALL_DISTINCT_COURSES_BY_FACULTY_NAME} query
+     *
+     * @param facultyName 1 query param
+     * @return distinct courses by faculty name
+     */
     public List<Integer> findAllDistinctCoursesByFacultyName(String facultyName) {
         try {
             Connection connection = DatabaseConnector.getConnection();

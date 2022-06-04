@@ -8,8 +8,15 @@ import java.util.List;
  */
 public interface TableConverter<T> {
 
+    /**
+     * @return columns of JTable
+     */
     String[] columns();
 
-    Object[][] convert(List<T> t);
+    /**
+     * @param ts List of {@link T} to convert
+     * @return rows of JTable
+     */
+    Object[][] convert(List<T> ts);
 
 }

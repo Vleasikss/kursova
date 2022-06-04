@@ -5,7 +5,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 /**
- * Main Singleton Application Frame
+ * Main Final Application Frame
  */
 public final class ApplicationFrame extends JFrame implements WindowListener {
 

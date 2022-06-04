@@ -28,11 +28,11 @@ public class StudentsTableConverter implements TableConverter<Student> {
     }
 
     @Override
-    public Object[][] convert(List<Student> students) {
-        Object[][] data = new Object[students.size()][columns().length];
+    public Object[][] convert(List<Student> ts) {
+        Object[][] data = new Object[ts.size()][columns().length];
 
-        for (int i = 0; i < students.size(); i++) {
-            Student student = students.get(i);
+        for (int i = 0; i < ts.size(); i++) {
+            Student student = ts.get(i);
 
             StudentTab studentByIdTab = new StudentTab(student);
 
