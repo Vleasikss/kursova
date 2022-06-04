@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.List;
 
 /**
- *  Frame Tab which shows {@link StudentTab#student} Info
+ * Frame Tab which shows {@link StudentTab#student} Info
  */
 public class StudentTab extends JFrame implements FrameTab {
 
@@ -72,7 +72,8 @@ public class StudentTab extends JFrame implements FrameTab {
 
     @Override
     public String title() {
-        return student.getLastName() + " " + student.getFirstName();
+        return student.getLastName() + " " + student.getFirstName() + " " + student.getPatronymic() + "-" +
+                student.getGroupId();
     }
 
     @Override

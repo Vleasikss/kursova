@@ -27,7 +27,7 @@ public class StudentsTableConverter implements TableConverter<Student> {
 
     @Override
     public String[] columns() {
-        return new String[]{"info", "id", "firstName", "lastName", "patronymic", "form", "groupId", "facultyId", "course", "delete"};
+        return new String[]{"info", "id", "first name", "last name", "patronymic", "form", "group", "faculty", "course", "delete"};
     }
 
     @Override

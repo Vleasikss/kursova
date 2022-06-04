@@ -33,7 +33,7 @@ public interface FrameTab {
 
 
     /**
-     * Reload this Frame Tab (remove and {@link FrameTab#show()} it again if page is opened
+     * Reload this Frame Tab (remove and {@link FrameTab#show()} it again if page is opened)
      */
     default void reload() {
         ApplicationTabbedPane pane = ApplicationTabbedPane.getInstance();

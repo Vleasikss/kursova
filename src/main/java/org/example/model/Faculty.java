@@ -19,4 +19,5 @@ public class Faculty implements BasicModel {
                 "name='" + name + '\'' +
                 '}';
     }
+
 }

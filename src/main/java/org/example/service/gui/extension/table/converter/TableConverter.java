@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * ({@link TableConverter#columns()}, {@link T}) to dimensional array converter for a {@link javax.swing.JTable} mapping
+ *
  * @param <T> Model
  */
 public interface TableConverter<T> {

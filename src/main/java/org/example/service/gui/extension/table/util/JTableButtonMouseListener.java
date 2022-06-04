@@ -17,6 +17,7 @@ public class JTableButtonMouseListener extends MouseAdapter {
 
     /**
      * Applies a click action for the {@link JButton} inside {@link JTable}
+     *
      * @param e some mouse event
      */
     public void mouseClicked(MouseEvent e) {
@@ -34,7 +35,9 @@ public class JTableButtonMouseListener extends MouseAdapter {
     private boolean isRowValid(int rowButton) {
         return rowButton < table.getRowCount() && rowButton >= 0;
     }
+
     private boolean isColumnValid(int column) {
         return column < table.getColumnCount() && column >= 0;
     }
+
 }

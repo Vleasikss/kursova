@@ -31,6 +31,7 @@ CREATE TABLE `GROUP`
     course          int         not null
 );
 
+
 ALTER TABLE STUDENT
     ADD CONSTRAINT student_group_id
         FOREIGN KEY (group_id)

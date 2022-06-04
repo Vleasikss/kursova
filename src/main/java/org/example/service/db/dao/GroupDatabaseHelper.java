@@ -63,6 +63,7 @@ public class GroupDatabaseHelper implements DatabaseHelper<Group, String> {
 
     /**
      * Not usable in the project so ignored
+     *
      * @return false
      */
     @Override
@@ -91,6 +92,7 @@ public class GroupDatabaseHelper implements DatabaseHelper<Group, String> {
 
     /**
      * finds all groups by {@link GroupDatabaseHelper#FIND_GROUP_BY_FACULTY_NAME_QUERY} query
+     *
      * @param facultyName faculty name to find the groups by
      * @return founded groups
      */
@@ -132,7 +134,7 @@ public class GroupDatabaseHelper implements DatabaseHelper<Group, String> {
      * finds all groups by {@link GroupDatabaseHelper#FIND_GROUPS_BY_FACULTY_NAME_AND_COURSE_QUERY} query
      *
      * @param facultyName 1 query param
-     * @param course 2 query param
+     * @param course      2 query param
      * @return founded groups
      */
     public List<Group> findByFacultyNameAndCourse(String facultyName, int course) {
@@ -196,4 +198,5 @@ public class GroupDatabaseHelper implements DatabaseHelper<Group, String> {
         }
         return null;
     }
+
 }

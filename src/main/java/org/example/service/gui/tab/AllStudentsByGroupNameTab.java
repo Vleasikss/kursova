@@ -33,4 +33,5 @@ public class AllStudentsByGroupNameTab implements FrameTab {
                 new ShowButton(new StudentsRatingScoreByGroupTab(group, studentDatabaseHelper))
         );
     }
+
 }

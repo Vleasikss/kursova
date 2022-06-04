@@ -35,4 +35,5 @@ public class StudentsRatingScoreByGroupTab implements FrameTab {
                 new StudentsRatingScoreFrameExtension(byGroupName).apply()
         );
     }
+
 }
