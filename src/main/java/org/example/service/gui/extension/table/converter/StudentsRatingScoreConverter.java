@@ -13,7 +13,7 @@ public class StudentsRatingScoreConverter implements TableConverter<Student> {
 
     @Override
     public String[] columns() {
-        return new String[]{"id", "student", "ratingScore"};
+        return new String[]{"id", "student", "rating score"};
     }
 
     @Override
