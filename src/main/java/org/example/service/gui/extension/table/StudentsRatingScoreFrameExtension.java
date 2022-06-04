@@ -14,7 +14,7 @@ public class StudentsRatingScoreFrameExtension extends TableFrameExtension<Stude
     public StudentsRatingScoreFrameExtension(List<Student> students) {
         super(new StudentsRatingScoreConverter(),
                 students.stream()
-                        .sorted((s1, s2) -> Double.compare(s2.getRatingScore(), s1.getRatingScore()))
+                        .sorted((s1, s2) -> Double.compare(s2.getRatingScore().getValue(), s1.getRatingScore().getValue()))
                         .collect(Collectors.toList())
         );
     }

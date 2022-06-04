@@ -9,7 +9,7 @@ import java.awt.*;
 
 /**
  * extension of JButton which contains an additional listener
- * per each {@link DeleteModelButton#DeleteModelButton(FrameTab, BasicModel, DeleteAction, String)} click
+ * callable per each {@link DeleteModelButton#DeleteModelButton(FrameTab, BasicModel, DeleteAction, String)} click
  * @param <T> Model to delete
  */
 public class DeleteModelButton<T extends BasicModel> extends JButton {

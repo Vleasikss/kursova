@@ -16,6 +16,9 @@ import java.util.regex.Pattern;
  */
 public class StudentsTableConverter implements TableConverter<Student> {
 
+    //language=regexp
+    private static final String EXTRACT_COURSE_FROM_GROUP_NAME_REGEXP = "-.*";
+
     private final FrameTab openedTab;
 
     public StudentsTableConverter(FrameTab openedTab) {
@@ -52,7 +55,7 @@ public class StudentsTableConverter implements TableConverter<Student> {
     }
 
     private static int extractCourseFromGroupName(String groupId) {
-        Pattern pattern = Pattern.compile("-.*");
+        Pattern pattern = Pattern.compile(EXTRACT_COURSE_FROM_GROUP_NAME_REGEXP);
         Matcher matcher = pattern.matcher(groupId);
         if (matcher.find()) {
             String after = matcher.group();

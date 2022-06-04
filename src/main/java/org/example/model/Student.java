@@ -10,7 +10,7 @@ public class Student implements BasicModel {
     private StudyForm form;
     private String groupId;
     private String facultyId;
-    private Double ratingScore;
+    private RatingScore ratingScore;
 
     public Student() {
     }
@@ -75,11 +75,11 @@ public class Student implements BasicModel {
         this.form = form;
     }
 
-    public Double getRatingScore() {
+    public RatingScore getRatingScore() {
         return ratingScore;
     }
 
-    public void setRatingScore(Double ratingScore) {
+    public void setRatingScore(RatingScore ratingScore) {
         this.ratingScore = ratingScore;
     }
 
@@ -143,12 +143,11 @@ public class Student implements BasicModel {
             return this;
         }
 
-        public Builder setRatingScore(double ratingScore) {
+        public Builder setRatingScore(RatingScore ratingScore) {
             Student.this.ratingScore = ratingScore;
 
             return this;
         }
-
 
         public Student build() {
             return Student.this;

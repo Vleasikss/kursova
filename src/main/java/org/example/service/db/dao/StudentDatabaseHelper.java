@@ -1,5 +1,6 @@
 package org.example.service.db.dao;
 
+import org.example.model.RatingScore;
 import org.example.model.Student;
 import org.example.model.StudyForm;
 
@@ -16,15 +17,15 @@ import java.util.List;
 public class StudentDatabaseHelper implements DatabaseHelper<Student, Long> {
 
     //language=SQL
-    private static final String FIND_ALL_STUDENTS_QUERY = "select * from STUDENT";
+    private static final String FIND_ALL_STUDENTS_QUERY = "SELECT * FROM STUDENT";
     //language=SQL
     private static final String INSERT_STUDENT_QUERY = "INSERT INTO STUDENT(first_name, last_name, patronymic, form, faculty_id, group_id, rating_score) VALUES (?, ?, ?, ?, ?, ?, ?)";
     //language=SQL
     private static final String DELETE_STUDENT_BY_ID_QUERY = "DELETE FROM STUDENT WHERE id = ?";
     //language=SQL
-    private static final String FIND_STUDENTS_BY_GROUP_NAME_QUERY = "SELECT * FROM STUDENT where group_id = ?";
+    private static final String FIND_STUDENTS_BY_GROUP_NAME_QUERY = "SELECT * FROM STUDENT WHERE group_id = ?";
     //language=SQL
-    private static final String FIND_STUDENTS_BY_GROUP_NAME_AND_STUDY_FORM_QUERY = "SELECT * FROM STUDENT where group_id = ? and form = ?";
+    private static final String FIND_STUDENTS_BY_GROUP_NAME_AND_STUDY_FORM_QUERY = "SELECT * FROM STUDENT WHERE group_id = ? AND form = ?";
 
 
     @Override
@@ -53,7 +54,7 @@ public class StudentDatabaseHelper implements DatabaseHelper<Student, Long> {
                 student.setLastName(lastName);
                 student.setPatronymic(patronymic);
                 student.setForm(StudyForm.valueOf(form));
-                student.setRatingScore(ratingScore);
+                student.setRatingScore(new RatingScore(ratingScore));
                 student.setFacultyId(facultyId);
                 student.setGroupId(groupId);
 
@@ -83,7 +84,7 @@ public class StudentDatabaseHelper implements DatabaseHelper<Student, Long> {
             preparedStatement.setString(4, student.getForm().name().toUpperCase());
             preparedStatement.setString(5, student.getFacultyId());
             preparedStatement.setString(6, student.getGroupId());
-            preparedStatement.setDouble(7, student.getRatingScore());
+            preparedStatement.setDouble(7, student.getRatingScore().getValue());
 
             int countOfChanges = preparedStatement.executeUpdate();
 
@@ -148,7 +149,7 @@ public class StudentDatabaseHelper implements DatabaseHelper<Student, Long> {
                 student.setLastName(lastName);
                 student.setPatronymic(patronymic);
                 student.setForm(StudyForm.valueOf(form));
-                student.setRatingScore(ratingScore);
+                student.setRatingScore(new RatingScore(ratingScore));
                 student.setFacultyId(facultyId);
                 student.setGroupId(groupId);
 
@@ -201,7 +202,7 @@ public class StudentDatabaseHelper implements DatabaseHelper<Student, Long> {
                 student.setLastName(lastName);
                 student.setPatronymic(patronymic);
                 student.setForm(StudyForm.valueOf(form));
-                student.setRatingScore(ratingScore);
+                student.setRatingScore(new RatingScore(ratingScore));
                 student.setFacultyId(facultyId);
                 student.setGroupId(groupId);
 

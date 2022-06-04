@@ -2,6 +2,7 @@ package org.example.service.gui.tab;
 
 import org.example.model.Faculty;
 import org.example.model.Group;
+import org.example.model.RatingScore;
 import org.example.model.Student;
 import org.example.model.StudyForm;
 import org.example.service.db.dao.FacultyDatabaseHelper;
@@ -22,9 +23,6 @@ import java.util.Optional;
 public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
 
     private static final Rectangle ADD_STUDENT_BOUNDS = new Rectangle(300, 90, 1200, 700);
-
-    private static final double MAX_RATING_SCORE = 100.0d;
-    private static final double MIN_RATING_SCORE = 0.0d;
 
     private static final Font TITLE_FONT = new Font("Arial", Font.PLAIN, 30);
     private static final Font ANY_LABEL_FONT = new Font("Arial", Font.PLAIN, 20);
@@ -197,14 +195,14 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
     /**
      *
      * @param rawRatingScore some string
-     * @return true if rawRatingScore {@link AddStudentTab#isDouble(String)} and in range between {@link AddStudentTab#MIN_RATING_SCORE} and {@link AddStudentTab#MAX_RATING_SCORE}
+     * @return true if rawRatingScore {@link AddStudentTab#isDouble(String)} and in range between {@link RatingScore#MIN} and {@link RatingScore#MAX}
      */
     private static boolean isValidRatingScore(String rawRatingScore) {
         if (!isDouble(rawRatingScore)) {
             return false;
         }
         double ratingScore = Double.parseDouble(rawRatingScore);
-        return ratingScore >= MIN_RATING_SCORE && ratingScore <= MAX_RATING_SCORE;
+        return ratingScore >= RatingScore.MIN && ratingScore <= RatingScore.MAX;
     }
 
     /**
@@ -273,7 +271,7 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
                         .setForm(form)
                         .setFacultyId(Objects.requireNonNull(facultiesComboBox.getSelectedItem()).toString())
                         .setGroupId(Objects.requireNonNull(groupsComboBox.getSelectedItem()).toString())
-                        .setRatingScore(Double.parseDouble(ratingScoreTf.getText()))
+                        .setRatingScore(new RatingScore(Double.parseDouble(ratingScoreTf.getText())))
                         .build();
                 studentDatabaseHelper.insert(student);
 
