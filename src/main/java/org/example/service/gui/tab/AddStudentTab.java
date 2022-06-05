@@ -16,12 +16,14 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 /**
  * Frame Tab which shows a 'Student's Registration Form'
  */
 public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
 
+    private static final Pattern NUMBER_REGEXP = Pattern.compile("\\d");
     private static final Rectangle ADD_STUDENT_BOUNDS = new Rectangle(300, 90, 1200, 700);
 
     private static final Font TITLE_FONT = new Font("Arial", Font.PLAIN, 30);
@@ -286,13 +288,13 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
      * @return maybe string error if registration form contains some invalid inputs
      */
     private Optional<String> validateForm() {
-        if (isNullOrEmpty(firstNameTf.getText())) {
+        if (isNullOrEmpty(firstNameTf.getText()) || hasNumber(firstNameTf.getText())) {
             return Optional.of("Firstname can't be empty");
         }
-        if (isNullOrEmpty(lastNameTf.getText())) {
+        if (isNullOrEmpty(lastNameTf.getText()) || hasNumber(lastNameTf.getText())) {
             return Optional.of("Lastname can't be empty");
         }
-        if (isNullOrEmpty(patronymicTf.getText())) {
+        if (isNullOrEmpty(patronymicTf.getText()) || hasNumber(patronymicTf.getText())) {
             return Optional.of("Patronymic can't be empty");
         }
         if (matchStudyForm() == null) {
@@ -302,6 +304,10 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
             return Optional.of("Invalid rating score. Rating score must be not less than 0.0 and no more than 100 points");
         }
         return Optional.empty();
+    }
+
+    private boolean hasNumber(String string) {
+        return NUMBER_REGEXP.matcher(string).find();
     }
 
     /**
