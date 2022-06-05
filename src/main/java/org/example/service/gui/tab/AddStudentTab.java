@@ -289,16 +289,16 @@ public class AddStudentTab extends JFrame implements ActionListener, FrameTab {
      */
     private Optional<String> validateForm() {
         if (isNullOrEmpty(firstNameTf.getText()) || hasNumber(firstNameTf.getText())) {
-            return Optional.of("Firstname can't be empty");
+            return Optional.of("Firstname is not valid");
         }
         if (isNullOrEmpty(lastNameTf.getText()) || hasNumber(lastNameTf.getText())) {
-            return Optional.of("Lastname can't be empty");
+            return Optional.of("Lastname is not valid");
         }
         if (isNullOrEmpty(patronymicTf.getText()) || hasNumber(patronymicTf.getText())) {
-            return Optional.of("Patronymic can't be empty");
+            return Optional.of("Patronymic is not valid");
         }
         if (matchStudyForm() == null) {
-            return Optional.of("Study form can't be empty");
+            return Optional.of("Study form is not valid");
         }
         if (isNullOrEmpty(ratingScoreTf.getText()) || !isValidRatingScore(ratingScoreTf.getText())) {
             return Optional.of("Invalid rating score. Rating score must be not less than 0.0 and no more than 100 points");
